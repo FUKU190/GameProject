@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
