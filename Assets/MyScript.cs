@@ -31,20 +31,17 @@ public class MyScript : MonoBehaviour
                                          rigidbody.velocity.y,
                                          joystick.Vertical * speed);
 
-        if(joystick.Horizontal != 0 && joystick.Vertical != 0)
+        if (joystick.Horizontal != 0 && joystick.Vertical != 0)
         {
             animator.SetBool("Run", true);
+            animator.SetBool("Wate", false);
             var direction = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
             transform.localRotation = Quaternion.LookRotation(direction);
         }
-        else if(joystick.Horizontal == 0 && joystick.Vertical == 0)
+        else if (joystick.Horizontal == 0 && joystick.Vertical == 0)
         {
             animator.SetBool("Run", false);
             animator.SetBool("Wate", true);
         }
-       
-
-
-
     }
 }
