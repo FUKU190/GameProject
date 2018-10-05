@@ -15,7 +15,7 @@ public class ObjectTap : MonoBehaviour {
     public MyScript MyScript;
     float num = 1.5f;
     int numrandom;
-    public bool BlockActiv;
+    bool BlockActiv;
     float dis1,dis2;
     Vector3 pos1, pos2;
     public Text text;
@@ -76,14 +76,14 @@ public class ObjectTap : MonoBehaviour {
         {
             BlockActiv = false;
         }
-        if ((Block1.GetComponent<Renderer>().material.color == Color.red) &&
-            (Block2.GetComponent<Renderer>().material.color == Color.red) &&
-            (Block3.GetComponent<Renderer>().material.color == Color.red) &&
-            (Block4.GetComponent<Renderer>().material.color == Color.red) &&
-            (Block5.GetComponent<Renderer>().material.color == Color.red) &&
-            (Block6.GetComponent<Renderer>().material.color == Color.red) &&
-            (Block7.GetComponent<Renderer>().material.color == Color.red) &&
-            (Block8.GetComponent<Renderer>().material.color == Color.red))
+        if ((Block1.GetComponent<Renderer>().material.color == Color.red) )
+            //(Block2.GetComponent<Renderer>().material.color == Color.red) &&
+            //(Block3.GetComponent<Renderer>().material.color == Color.red) &&
+            //(Block4.GetComponent<Renderer>().material.color == Color.red) &&
+            //(Block5.GetComponent<Renderer>().material.color == Color.red) &&
+            //(Block6.GetComponent<Renderer>().material.color == Color.red) &&
+            //(Block7.GetComponent<Renderer>().material.color == Color.red) &&
+            //(Block8.GetComponent<Renderer>().material.color == Color.red))
         {
             StartCoroutine("QuizStart");
         }

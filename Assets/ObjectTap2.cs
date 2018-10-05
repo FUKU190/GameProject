@@ -5,12 +5,28 @@ using UnityEngine;
 public class ObjectTap2 : MonoBehaviour
 {
     private int ClickCount1;
-     int numrandom2;
+    int numrandom2;
+    float dis2;
+    public GameObject PlayerPosision;
+    bool BlockActiv;
+
 
     // Start is called before the first frame update
     void Start()
     {
 
+    }
+    private void Update()
+    {
+        dis2 = Vector3.Distance(this.gameObject.transform.position, PlayerPosision.transform.position);
+        if(dis2 <= 1.5f)
+        {
+            BlockActiv = true;
+        }
+        else
+        {
+            BlockActiv = false;
+        }
     }
 
     // Update is called once per frame

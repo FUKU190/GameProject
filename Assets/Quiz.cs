@@ -28,6 +28,7 @@ public class Quiz : MonoBehaviour
 
     void Start()
     {
+        Count = 0;
         QuizLoad();
     }
 
@@ -47,6 +48,7 @@ public class Quiz : MonoBehaviour
     {
         if (Count == 10)
         {
+            canvas.alpha = 0;
             EndQuiz();
         }
         //表示される文字数を計算
@@ -65,7 +67,7 @@ public class Quiz : MonoBehaviour
     {
         
         //リストからランダムで1問取る
-        RandomNum = Random.Range(0, 16);
+        RandomNum = Random.Range(0, 15);
         if(chk[RandomNum] == 1)
         {
             SetNextSentence();
@@ -147,14 +149,13 @@ public class Quiz : MonoBehaviour
         MyScript.speed = 5;
         MoveBlock.upspeed = 4;
         MoveBlock.posision = 40;
-        Count = 0;
         StartCoroutine("ObjectOff");
     }
     IEnumerator ObjectOff()
     {
         yield return new WaitForSeconds(1.0f);
-        canvas.alpha = 0;
-        this.gameObject.SetActive(false);
+        //canvas.alpha = 0;
+        //this.gameObject.SetActive(false);
         yield return null; 
     }
 }
