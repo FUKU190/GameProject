@@ -23,8 +23,36 @@ public class MoveBlock : MonoBehaviour
        
         if(this.gameObject.transform.position.y > posision - 3)
         {
-            force = new Vector3(0, 0.5f, 0);
+            force = new Vector3(0, 0.4f, 0);
             rb.AddForce(force);
+            if (this.gameObject.transform.position.y >= 140)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+            }
+            else if (this.gameObject.transform.position.y == 120)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            }
+            else if (this.gameObject.transform.position.y == 100)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.cyan;
+            }
+            else if (this.gameObject.transform.position.y == 80)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.grey;
+            }
+            else if (this.gameObject.transform.position.y == 60)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.green;
+            }
+            else if (this.gameObject.transform.position.y >= 40)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            }
+            else if (this.gameObject.transform.position.y >= 20)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+            }
         }
         if (this.gameObject.transform.position.y > posision)
         {

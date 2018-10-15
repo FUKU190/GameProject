@@ -8,24 +8,24 @@ public class ObjectTap2 : MonoBehaviour
     int numrandom2;
     float dis2;
     public GameObject PlayerPosision;
-    bool BlockActiv;
+    private bool BlockActiv02;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        BlockActiv02 = false;
     }
     private void Update()
     {
         dis2 = Vector3.Distance(this.gameObject.transform.position, PlayerPosision.transform.position);
         if(dis2 <= 1.5f)
         {
-            BlockActiv = true;
+            BlockActiv02 = true;
         }
         else
         {
-            BlockActiv = false;
+            BlockActiv02 = false;
         }
     }
 
@@ -34,31 +34,31 @@ public class ObjectTap2 : MonoBehaviour
     {
         Countrandom2();
         ClickCount1 = numrandom2;
-        if (ClickCount1 == 1)
+        if (ClickCount1 == 1 && BlockActiv02 == true)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.green;
         }
-        else if (ClickCount1 == 2)
+        else if (ClickCount1 == 2 && BlockActiv02 == true)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.red;
         }
-        else if (ClickCount1 == 3)
+        else if (ClickCount1 == 3 && BlockActiv02 == true)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
-        else if (ClickCount1 == 4)
+        else if (ClickCount1 == 4 && BlockActiv02 == true)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
-        else if (ClickCount1 == 5)
+        else if (ClickCount1 == 5 && BlockActiv02 == true)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.grey;
         }
-        else if (ClickCount1 == 6)
+        else if (ClickCount1 == 6 && BlockActiv02 == true)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.cyan;
         }
-        else if (ClickCount1 == 7)
+        else if (ClickCount1 == 7 && BlockActiv02 == true)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         }

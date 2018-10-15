@@ -6,27 +6,22 @@ using UnityEngine.UI;
 
 public class ObjectTap11 : MonoBehaviour
 {
-
-
     private int ClickCount;
-    public GameObject Block1, Block2, Block3, Block4;
-    public GameObject Block5, Block6, Block7, Block8;
-    public GameObject PlayerPosision, QuizObject;
-    public CanvasGroup canvas;
+    public GameObject Floor2Block1, Floor2Block2, Floor2Block3, Floor2Block4;
+    public GameObject Floor2Block5, Floor2Block6, Floor2Block7, Floor2Block8;
+    public GameObject PlayerPosision02;
     public MyScript MyScript;
     float num = 1.5f;
     int numrandom;
-    public bool BlockActiv;
-    float dis1, dis2;
+    public bool BlockActiv,Quizload;
+    float dis1;
     Vector3 pos1, pos2;
     public Text text;
 
     // Start is called before the first frame update
     void Start()
     {
-        QuizObject.SetActive(false);
-        canvas.alpha = 0;
-        canvas.interactable = false;
+
     }
 
 
@@ -35,38 +30,38 @@ public class ObjectTap11 : MonoBehaviour
     {
         Countrandom();
         ClickCount = numrandom;
-        if (ClickCount == 1 && BlockActiv == true)
+        if (ClickCount == 1 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
-        else if (ClickCount == 2 && BlockActiv == true)
+        else if (ClickCount == 2 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.green;
         }
-        else if (ClickCount == 3 && BlockActiv == true)
+        else if (ClickCount == 3 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.red;
         }
-        else if (ClickCount == 4 && BlockActiv == true)
+        else if (ClickCount == 4 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
-        else if (ClickCount == 5 && BlockActiv == true)
+        else if (ClickCount == 5 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.grey;
         }
-        else if (ClickCount == 6 && BlockActiv == true)
+        else if (ClickCount == 6 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.cyan;
         }
-        else if (ClickCount == 7 && BlockActiv == true)
+        else if (ClickCount == 7 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         }
     }
     private void Update()
     {
-        dis1 = Vector3.Distance(this.gameObject.transform.position, PlayerPosision.transform.position);
+        dis1 = Vector3.Distance(this.gameObject.transform.position, PlayerPosision02.transform.position);
         //Debug.Log(dis1);
         if (dis1 <= num)
         {
@@ -77,30 +72,36 @@ public class ObjectTap11 : MonoBehaviour
         {
             BlockActiv = false;
         }
-        if ((Block1.GetComponent<Renderer>().material.color == Color.blue) &&
-            (Block2.GetComponent<Renderer>().material.color == Color.blue) &&
-            (Block3.GetComponent<Renderer>().material.color == Color.blue) &&
-            (Block4.GetComponent<Renderer>().material.color == Color.blue) &&
-            (Block5.GetComponent<Renderer>().material.color == Color.blue) &&
-            (Block6.GetComponent<Renderer>().material.color == Color.blue) &&
-            (Block7.GetComponent<Renderer>().material.color == Color.blue) &&
-            (Block8.GetComponent<Renderer>().material.color == Color.blue))
+        if ((Floor2Block1.GetComponent<Renderer>().material.color == Color.blue) )
+        // (Floor2Block2.GetComponent<Renderer>().material.color == Color.blue) &&
+        // (Floor2Block3.GetComponent<Renderer>().material.color == Color.blue) &&
+        // (Floor2Block4.GetComponent<Renderer>().material.color == Color.blue) &&
+        // (Floor2Block5.GetComponent<Renderer>().material.color == Color.blue) &&
+        // (Floor2Block6.GetComponent<Renderer>().material.color == Color.blue) &&
+        // (Floor2Block7.GetComponent<Renderer>().material.color == Color.blue) &&
+        // (Floor2Block8.GetComponent<Renderer>().material.color == Color.blue))
         {
-            StartCoroutine("QuizStart");
+            Quizload = true;
+            StartCoroutine("QuizStart2");
+            Quizload = false;
         }
     }
     public void Countrandom()
     {
         numrandom = Random.Range(1, 7);
     }
-    IEnumerator QuizStart()
+    IEnumerator QuizStart2()
     {
         MyScript.speed = 0;
         text.text = "10問正解しろ！";
-        yield return new WaitForSeconds(2.0f);
-        canvas.alpha = 1;
-        canvas.interactable = true;
-        QuizObject.SetActive(true);
-        yield return null;
+        yield return new WaitForSeconds(1.0f);
+        GameObject.Find("ColorBlock1").GetComponent<ObjectTap>().Authorization = true;
+        GameObject.Find("ColorBlock1").GetComponent<ObjectTap>().CheckAuthorization();
+        if (Quizload)
+        {
+            GameObject.Find("QuizObject").GetComponent<Quiz>().QuizReset();
+            GameObject.Find("QuizObject").GetComponent<Quiz>(). count.text = "正解数：" + 0;
+            //Quizload = false;
+        }
     }
 }

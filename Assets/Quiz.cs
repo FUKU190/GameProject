@@ -10,26 +10,27 @@ public class Quiz : MonoBehaviour
     public Text uiText;   // uiTextへの参照
     public List<string[]> csvData = new List<string[]>();
     public TextAsset CSVfile;
-    public Text Select1, Select2, Select3, Select4,count;
+    public Text Select1, Select2, Select3, Select4, count;
     [SerializeField]
     [Range(0.001f, 0.3f)]
-    float intervalForCharDisplay;   // 1文字の表示にかける時間
-    int RandomNum,Count;
+    float IntervalForCharDisplay;   // 1文字の表示にかける時間
+    int RandomNum, Count;
     string Ans;
-    int[] chk = new int[16];
     private int currentSentenceNum = 0; //現在表示している文章番号
-    private string currentSentence = string.Empty;  // 現在の文字列
+    protected string currentSentence = string.Empty;  // 現在の文字列
     private float timeUntilDisplay = 0;     // 表示にかかる時間
     private float timeBeganDisplay = 1;         // 文字列の表示を開始した時間
-    private int lastUpdateCharCount = -1;       // 表示中の文字数
+    public int lastUpdateCharCount = -1;       // 表示中の文字数
     public MyScript MyScript;
     public MoveBlock MoveBlock;
-    public CanvasGroup canvas;
+    public CanvasGroup canvas, QuizText;
+    bool posisionUp;
 
     void Start()
     {
         Count = 0;
         QuizLoad();
+        posisionUp = false;
     }
 
     public void QuizLoad()
@@ -46,68 +47,64 @@ public class Quiz : MonoBehaviour
 
     void Update()
     {
-        if (Count == 10)
+        if (Count >= 10)
         {
-            canvas.alpha = 0;
+            posisionUp = true;
             EndQuiz();
         }
         //表示される文字数を計算
-        int displayCharCount = (int)(Mathf.Clamp01((Time.time - timeBeganDisplay) / timeUntilDisplay) * currentSentence.Length);
-        //表示される文字数が表示している文字数と違う
-        if (displayCharCount != lastUpdateCharCount)
+        else
         {
-            uiText.text = currentSentence.Substring(0, displayCharCount);
-            //表示している文字数の更新
-            lastUpdateCharCount = displayCharCount;
+            int displayCharCount = (int)(Mathf.Clamp01((Time.time - timeBeganDisplay) / timeUntilDisplay) * currentSentence.Length);
+            //表示される文字数が表示している文字数と違う
+            if (displayCharCount != lastUpdateCharCount)
+            {
+                uiText.text = currentSentence.Substring(0, displayCharCount);
+                //表示している文字数の更新
+                lastUpdateCharCount = displayCharCount;
+            }
         }
     }
-
     // 次の文章をセットする
     public void SetNextSentence()
     {
-        
+
         //リストからランダムで1問取る
-        RandomNum = Random.Range(0, 15);
-        if(chk[RandomNum] == 1)
-        {
-            SetNextSentence();
-        }
-        chk[RandomNum] = 1;
+        RandomNum = Random.Range(0, 101);
         Ans = csvData[RandomNum][1];
         currentSentence = csvData[RandomNum][0];
         Select1.text = csvData[RandomNum][2];
         Select2.text = csvData[RandomNum][3];
         Select3.text = csvData[RandomNum][4];
         Select4.text = csvData[RandomNum][5];
-        timeUntilDisplay = currentSentence.Length * intervalForCharDisplay;
+        timeUntilDisplay = currentSentence.Length * IntervalForCharDisplay;
         timeBeganDisplay = Time.time;
         currentSentenceNum++;
         lastUpdateCharCount = 0;
     }
-
     //選択肢の判定、次の問題の読み込み
     public void Check1()
     {
-        if(Ans == Select1.text)
+        if (Ans == Select1.text)
         {
             Count++;
             count.text = "正解数：" + Count;
             StartCoroutine("NextQuiz");
         }
-        else if(Ans != Select1.text)
+        else if (Ans != Select1.text)
         {
             StartCoroutine("NextQuiz");
         }
     }
     public void Check2()
     {
-        if(Ans == Select2.text)
+        if (Ans == Select2.text)
         {
             Count++;
             count.text = "正解数：" + Count;
             StartCoroutine("NextQuiz");
         }
-        else if(Ans != Select2.text)
+        else if (Ans != Select2.text)
         {
             StartCoroutine("NextQuiz");
         }
@@ -146,16 +143,21 @@ public class Quiz : MonoBehaviour
     }
     public void EndQuiz()
     {
-        MyScript.speed = 5;
-        MoveBlock.upspeed = 4;
-        MoveBlock.posision = 40;
-        StartCoroutine("ObjectOff");
+        if (posisionUp)
+        {
+            MyScript.speed = 5;
+            canvas.alpha = 0;
+            canvas.interactable = false;
+            MoveBlock.posision += 20;
+            //Count = 0;
+            //count.text = "正解数：" + Count;
+            posisionUp = false;
+            Count = 0;
+        }
     }
-    IEnumerator ObjectOff()
+    public void QuizReset()
     {
-        yield return new WaitForSeconds(1.0f);
-        //canvas.alpha = 0;
-        //this.gameObject.SetActive(false);
-        yield return null; 
+        StartCoroutine("NextQuiz");
     }
 }
+

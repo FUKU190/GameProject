@@ -16,6 +16,7 @@ public class ObjectTap : MonoBehaviour {
     float num = 1.5f;
     int numrandom;
     bool BlockActiv;
+    public bool Authorization;
     float dis1,dis2;
     Vector3 pos1, pos2;
     public Text text;
@@ -28,37 +29,36 @@ public class ObjectTap : MonoBehaviour {
         canvas.interactable = false;
     }
 
-
     // Update is called once per frame
     public void OnClick()
     {
         Countrandom();
         ClickCount = numrandom;
-        if(ClickCount == 1 && BlockActiv == true)
+        if(ClickCount == 1 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
-        else if(ClickCount == 2 && BlockActiv == true)
+        else if(ClickCount == 2 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.green;
         }
-        else if(ClickCount == 3 && BlockActiv == true)
+        else if(ClickCount == 3 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.red;
         }
-        else if (ClickCount == 4 && BlockActiv == true)
+        else if (ClickCount == 4 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
-        else if (ClickCount == 5 && BlockActiv == true)
+        else if (ClickCount == 5 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.grey;
         }
-        else if (ClickCount == 6 && BlockActiv == true)
+        else if (ClickCount == 6 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.cyan;
         }
-        else if (ClickCount == 7 && BlockActiv == true)
+        else if (ClickCount == 7 && BlockActiv)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         }
@@ -94,12 +94,19 @@ public class ObjectTap : MonoBehaviour {
     }
     IEnumerator QuizStart()
     {
-        MyScript.speed = 0;
+        Authorization = true;
         text.text = "10問正解しろ！";
         yield return new WaitForSeconds(2.0f);
-        canvas.alpha = 1;
-        canvas.interactable = true;
-        QuizObject.SetActive(true);
-        yield return null;
+        CheckAuthorization();
+    }
+    public void CheckAuthorization(){
+        if (Authorization)
+        {
+            MyScript.speed = 0;
+            canvas.alpha = 1;
+            canvas.interactable = true;
+            QuizObject.SetActive(true);
+            Authorization = false;
+        }
     }
 }
