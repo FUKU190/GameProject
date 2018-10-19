@@ -5,6 +5,8 @@ public class FixedJoystick : Joystick
 {
     Vector2 joystickPosition = Vector2.zero;
     private Camera cam = new Camera();
+    public GameObject TouchJoyStick;
+    
 
     void Start()
     {
@@ -29,4 +31,6 @@ public class FixedJoystick : Joystick
         inputVector = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
     }
+
+   
 }

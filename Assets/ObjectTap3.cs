@@ -8,7 +8,7 @@ public class ObjectTap3 : MonoBehaviour
     int numrandom3;
     float dis3;
     public GameObject PlayerPosision;
-    bool BlockActiv;
+    bool BlockActiv03;
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +23,11 @@ public class ObjectTap3 : MonoBehaviour
         if (dis3 <= 1.5f)
         {
 
-            BlockActiv = true;
+            BlockActiv03 = true;
         }
         else
         {
-            BlockActiv = false;
+            BlockActiv03 = false;
         }
     }
 
@@ -36,31 +36,31 @@ public class ObjectTap3 : MonoBehaviour
     {
         Countrandom3();
         ClickCount3 = numrandom3;
-        if (ClickCount3 == 1 && BlockActiv == true)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
-        }
-        else if (ClickCount3 == 2 && BlockActiv == true)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
-        }
-        else if (ClickCount3 == 3 && BlockActiv == true)
+        if (ClickCount3 == 1 || ClickCount3 == 8 && BlockActiv03)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
-        else if (ClickCount3 == 4 && BlockActiv == true)
+        else if (ClickCount3 == 2 || ClickCount3 == 9 && BlockActiv03)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.green;
+        }
+        else if (ClickCount3 == 3 || ClickCount3 == 10 && BlockActiv03)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
+        }
+        else if (ClickCount3 == 4 || ClickCount3 == 11 && BlockActiv03)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
-        else if (ClickCount3 == 5 && BlockActiv == true)
+        else if (ClickCount3 == 5 || ClickCount3 == 12 && BlockActiv03)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.grey;
         }
-        else if (ClickCount3 == 6 && BlockActiv == true)
+        else if (ClickCount3 == 6 || ClickCount3 == 13 && BlockActiv03)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.cyan;
         }
-        else if (ClickCount3 == 7 && BlockActiv == true)
+        else if (ClickCount3 == 7 || ClickCount3 == 14 && BlockActiv03)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         }

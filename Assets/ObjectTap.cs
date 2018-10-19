@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ObjectTap : MonoBehaviour {
@@ -11,14 +10,13 @@ public class ObjectTap : MonoBehaviour {
     public GameObject Block1, Block2, Block3, Block4;
     public GameObject Block5, Block6, Block7, Block8;
     public GameObject PlayerPosision,QuizObject;
-    public CanvasGroup canvas;
+    public CanvasGroup canvas,joystick01;
     public MyScript MyScript;
     float num = 1.5f;
     int numrandom;
     bool BlockActiv;
     public bool Authorization;
-    float dis1,dis2;
-    Vector3 pos1, pos2;
+    float dis1;
     public Text text;
 
     // Start is called before the first frame update
@@ -94,14 +92,16 @@ public class ObjectTap : MonoBehaviour {
     }
     IEnumerator QuizStart()
     {
-        Authorization = true;
         text.text = "10問正解しろ！";
+        Authorization = true;
         yield return new WaitForSeconds(2.0f);
         CheckAuthorization();
     }
     public void CheckAuthorization(){
         if (Authorization)
         {
+            joystick01.alpha = 0;
+            joystick01.interactable = false;
             MyScript.speed = 0;
             canvas.alpha = 1;
             canvas.interactable = true;

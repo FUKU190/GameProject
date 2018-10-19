@@ -6,31 +6,32 @@ using System.Linq;
 
 public class Quiz : MonoBehaviour
 {
-    private string[] sentences; // 文章を格納する
-    public Text uiText;   // uiTextへの参照
+    private string[] sentences;                        // 文章を格納するリスト
     public List<string[]> csvData = new List<string[]>();
     public TextAsset CSVfile;
-    public Text Select1, Select2, Select3, Select4, count;
+    public Text uiText, Select1, Select2, Select3, Select4, count; //問題と、選択肢のテキスト
     [SerializeField]
     [Range(0.001f, 0.3f)]
-    float IntervalForCharDisplay;   // 1文字の表示にかける時間
-    int RandomNum, Count;
-    string Ans;
-    private int currentSentenceNum = 0; //現在表示している文章番号
-    protected string currentSentence = string.Empty;  // 現在の文字列
-    private float timeUntilDisplay = 0;     // 表示にかかる時間
-    private float timeBeganDisplay = 1;         // 文字列の表示を開始した時間
-    public int lastUpdateCharCount = -1;       // 表示中の文字数
+    float IntervalForCharDisplay;                      // 1文字の表示にかける時間
+    int RandomNum = 0;
+    int ClearCount = 0;
+    public int Count, Nolmacount;
+    string Ans;                                        //答え合わせ用の文字列を格納する変数
+    private int currentSentenceNum = 0;                //現在表示している文章番号
+    protected string currentSentence = string.Empty;   // 現在の文字列
+    private float timeUntilDisplay = 0;                // 表示にかかる時間
+    private float timeBeganDisplay = 1;                // 文字列の表示を開始した時間
+    int lastUpdateCharCount = -1;                      // 表示中の文字数
     public MyScript MyScript;
     public MoveBlock MoveBlock;
-    public CanvasGroup canvas, QuizText;
-    bool posisionUp;
+    public CanvasGroup canvas, QuizText,joystick;
+    public bool posisionUp = false;
 
     void Start()
     {
+        Nolmacount = 10;
         Count = 0;
         QuizLoad();
-        posisionUp = false;
     }
 
     public void QuizLoad()
@@ -47,9 +48,9 @@ public class Quiz : MonoBehaviour
 
     void Update()
     {
-        if (Count >= 10)
+        if (Count == Nolmacount)
         {
-            posisionUp = true;
+            ClearCount++;
             EndQuiz();
         }
         //表示される文字数を計算
@@ -70,7 +71,7 @@ public class Quiz : MonoBehaviour
     {
 
         //リストからランダムで1問取る
-        RandomNum = Random.Range(0, 101);
+        RandomNum = Random.Range(1, 100);
         Ans = csvData[RandomNum][1];
         currentSentence = csvData[RandomNum][0];
         Select1.text = csvData[RandomNum][2];
@@ -82,13 +83,14 @@ public class Quiz : MonoBehaviour
         currentSentenceNum++;
         lastUpdateCharCount = 0;
     }
-    //選択肢の判定、次の問題の読み込み
+
+    //選択肢の判定&次の問題の読み込み
     public void Check1()
     {
         if (Ans == Select1.text)
         {
             Count++;
-            count.text = "正解数：" + Count;
+            count.text = "正解数：" + (Count % 10);
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select1.text)
@@ -101,7 +103,7 @@ public class Quiz : MonoBehaviour
         if (Ans == Select2.text)
         {
             Count++;
-            count.text = "正解数：" + Count;
+            count.text = "正解数：" + (Count % 10);
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select2.text)
@@ -114,7 +116,7 @@ public class Quiz : MonoBehaviour
         if (Ans == Select3.text)
         {
             Count++;
-            count.text = "正解数：" + Count;
+            count.text = "正解数：" + (Count % 10);
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select3.text)
@@ -127,7 +129,7 @@ public class Quiz : MonoBehaviour
         if (Ans == Select4.text)
         {
             Count++;
-            count.text = "正解数：" + Count;
+            count.text = "正解数：" + (Count % 10);
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select4.text)
@@ -143,21 +145,19 @@ public class Quiz : MonoBehaviour
     }
     public void EndQuiz()
     {
-        if (posisionUp)
+        if (posisionUp == false)
         {
+            GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
+            joystick.alpha = 1;
+            joystick.interactable = true;
             MyScript.speed = 5;
+            MoveBlock.posision += 20;
+            posisionUp = true;
+        }
+        else if(posisionUp)
+        {
             canvas.alpha = 0;
             canvas.interactable = false;
-            MoveBlock.posision += 20;
-            //Count = 0;
-            //count.text = "正解数：" + Count;
-            posisionUp = false;
-            Count = 0;
         }
     }
-    public void QuizReset()
-    {
-        StartCoroutine("NextQuiz");
-    }
 }
-

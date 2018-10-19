@@ -34,31 +34,31 @@ public class ObjectTap2 : MonoBehaviour
     {
         Countrandom2();
         ClickCount1 = numrandom2;
-        if (ClickCount1 == 1 && BlockActiv02 == true)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
-        }
-        else if (ClickCount1 == 2 && BlockActiv02 == true)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
-        }
-        else if (ClickCount1 == 3 && BlockActiv02 == true)
+        if (ClickCount1 == 1 || ClickCount1 == 8 && BlockActiv02)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
-        else if (ClickCount1 == 4 && BlockActiv02 == true)
+        else if (ClickCount1 == 2 || ClickCount1 == 9 && BlockActiv02)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.green;
+        }
+        else if (ClickCount1 == 3 || ClickCount1 == 10 && BlockActiv02)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
+        }
+        else if (ClickCount1 == 4 || ClickCount1 == 11 && BlockActiv02)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
-        else if (ClickCount1 == 5 && BlockActiv02 == true)
+        else if (ClickCount1 == 5 || ClickCount1 == 12 && BlockActiv02)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.grey;
         }
-        else if (ClickCount1 == 6 && BlockActiv02 == true)
+        else if (ClickCount1 == 6 || ClickCount1 == 13 && BlockActiv02)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.cyan;
         }
-        else if (ClickCount1 == 7 && BlockActiv02 == true)
+        else if (ClickCount1 == 7 || ClickCount1 == 14 && BlockActiv02)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         }
