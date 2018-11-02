@@ -91,7 +91,7 @@ public class ObjectTap31 : MonoBehaviour
         if (Quizload3)
         {
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
-            joyController3.transform.position = new Vector2(800, 120);
+            joyController3.transform.position = new Vector2(1200, 120);
             missiontext2.alpha = 1;
             yield return new WaitForSeconds(2.0f);
             canvas03.alpha = 1;

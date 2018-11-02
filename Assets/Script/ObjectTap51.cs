@@ -91,7 +91,7 @@ public class ObjectTap51 : MonoBehaviour
         {
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
             missiontext4.alpha = 1;
-            joyController5.transform.position = new Vector2(800, 120);
+            joyController5.transform.position = new Vector2(1200, 120);
             yield return new WaitForSeconds(2.0f);
             canvas05.alpha = 1;
             canvas05.interactable = true;

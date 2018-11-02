@@ -98,7 +98,7 @@ public class ObjectTap : MonoBehaviour {
     public void CheckAuthorization(){
         if (Authorization == false)
         {
-            joystickbutton.transform.position = new Vector3(800,120,0);
+            joystickbutton.transform.position = new Vector2(1200,120);
             canvas.alpha = 1;
             canvas.interactable = true;
             QuizObject.SetActive(true);
