@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 public class Quiz : MonoBehaviour
 {
     private string[] sentences;                        // 文章を格納するリスト
     public List<string[]> csvData = new List<string[]>();
     public TextAsset CSVfile;
+    public GameObject joyController;
     public Text uiText, Select1, Select2, Select3, Select4, count; //問題と、選択肢のテキスト
     [SerializeField]
     [Range(0.001f, 0.3f)]
@@ -24,7 +24,7 @@ public class Quiz : MonoBehaviour
     int lastUpdateCharCount = -1;                      // 表示中の文字数
     public MyScript MyScript;
     public MoveBlock MoveBlock;
-    public CanvasGroup canvas, QuizText,joystick;
+    public CanvasGroup canvas, QuizText,mission;
     public bool posisionUp = false;
 
     void Start()
@@ -148,11 +148,11 @@ public class Quiz : MonoBehaviour
         if (posisionUp == false)
         {
             GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
-            joystick.alpha = 1;
-            joystick.interactable = true;
+            //Debug.Log("IN");
             MyScript.speed = 5;
+            joyController.transform.position = new Vector2(640, 120);
             MoveBlock.posision += 20;
-            posisionUp = true;
+            mission.alpha = 0;
         }
         else if(posisionUp)
         {

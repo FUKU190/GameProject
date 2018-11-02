@@ -9,14 +9,13 @@ public class ObjectTap41 : MonoBehaviour
     private int ClickCount;
     public GameObject Floor4Block1, Floor4Block2, Floor4Block3, Floor4Block4;
     public GameObject Floor4Block5, Floor4Block6, Floor4Block7, Floor4Block8;
-    public GameObject PlayerPosision04;
-    public MyScript MyScript;
+    public GameObject PlayerPosision04,joyController4;
     float num = 1.5f;
     int numrandom;
     public bool BlockActiv, Quizload;
     float dis4;
     public Text text;
-    public CanvasGroup canvas03,joystck04;
+    public CanvasGroup canvas03,missiontext3;
     bool Quizload4 = true;
 
     // Start is called before the first frame update
@@ -92,10 +91,8 @@ public class ObjectTap41 : MonoBehaviour
         if (Quizload4)
         {
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
-            MyScript.speed = 0;
-            joystck04.alpha = 0;
-            joystck04.interactable = false;
-            text.text = "10問正解しろ！";
+            joyController4.transform.position = new Vector2(800, 120);
+            missiontext3.alpha = 1;
             yield return new WaitForSeconds(2.0f);
             canvas03.alpha = 1;
             canvas03.interactable = true;

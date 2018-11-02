@@ -9,8 +9,7 @@ public class ObjectTap11 : MonoBehaviour
     private int ClickCount;
     public GameObject Floor2Block1, Floor2Block2, Floor2Block3, Floor2Block4;
     public GameObject Floor2Block5, Floor2Block6, Floor2Block7, Floor2Block8;
-    public GameObject PlayerPosision02;
-    public MyScript MyScript;
+    public GameObject PlayerPosision02,joyController2;
     float num = 1.5f;
     int numrandom;
     public bool BlockActiv;
@@ -18,7 +17,7 @@ public class ObjectTap11 : MonoBehaviour
     float dis1;
     Vector3 pos1, pos2;
     public Text text;
-    public CanvasGroup canvas02,joystick02;
+    public CanvasGroup canvas02,missiontext1;
 
     // Start is called before the first frame update
     void Start()
@@ -96,11 +95,9 @@ public class ObjectTap11 : MonoBehaviour
         if (Quizload)
         {
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
-            MyScript.speed = 0;
-            text.text = "10問正解しろ！";
-            joystick02.alpha = 0;
-            joystick02.interactable = false;
-            yield return new WaitForSeconds(1.3f);
+            joyController2.transform.position = new Vector2(800, 120);
+            missiontext1.alpha = 1;
+            yield return new WaitForSeconds(2.0f);
             canvas02.alpha = 1;
             canvas02.interactable = true;
             GameObject.Find("QuizObject").GetComponent<Quiz>().Nolmacount = 20;

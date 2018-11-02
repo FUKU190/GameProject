@@ -9,13 +9,12 @@ public class ObjectTap : MonoBehaviour {
     private int ClickCount;
     public GameObject Block1, Block2, Block3, Block4;
     public GameObject Block5, Block6, Block7, Block8;
-    public GameObject PlayerPosision,QuizObject;
-    public CanvasGroup canvas,joystick01;
-    public MyScript MyScript;
+    public GameObject PlayerPosision,QuizObject,joystickbutton;
+    public CanvasGroup canvas,missiontext;
     float num = 1.5f;
     int numrandom;
     bool BlockActiv;
-    public bool Authorization;
+    public bool Authorization = false;
     float dis1;
     public Text text;
 
@@ -91,22 +90,19 @@ public class ObjectTap : MonoBehaviour {
         numrandom = Random.Range(1, 7);
     }
     IEnumerator QuizStart()
-    {
-        text.text = "10問正解しろ！";
-        Authorization = true;
+    { 
+        missiontext.alpha = 1;
         yield return new WaitForSeconds(2.0f);
         CheckAuthorization();
     }
     public void CheckAuthorization(){
-        if (Authorization)
+        if (Authorization == false)
         {
-            joystick01.alpha = 0;
-            joystick01.interactable = false;
-            MyScript.speed = 0;
+            joystickbutton.transform.position = new Vector3(800,120,0);
             canvas.alpha = 1;
             canvas.interactable = true;
             QuizObject.SetActive(true);
-            Authorization = false;
+            Authorization = true;
         }
     }
 }

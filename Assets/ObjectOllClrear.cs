@@ -14,27 +14,27 @@ public class ObjectOllClrear : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void ClearColor()
     {
         if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 10)
         {
-            Floor1Block1.GetComponent<Renderer>().material.color = Color.white;
-            Floor1Block2.GetComponent<Renderer>().material.color = Color.white;
-            Floor1Block3.GetComponent<Renderer>().material.color = Color.white;
-            Floor1Block4.GetComponent<Renderer>().material.color = Color.white;
-            Floor1Block5.GetComponent<Renderer>().material.color = Color.white;
-            Floor1Block6.GetComponent<Renderer>().material.color = Color.white;
-            Floor1Block7.GetComponent<Renderer>().material.color = Color.white;
-            Floor1Block8.GetComponent<Renderer>().material.color = Color.white;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
+            Floor1Block1.GetComponent<Renderer>().material.color = Color.black;
+            Floor1Block2.GetComponent<Renderer>().material.color = Color.black;
+            Floor1Block3.GetComponent<Renderer>().material.color = Color.black;
+            Floor1Block4.GetComponent<Renderer>().material.color = Color.black;
+            Floor1Block5.GetComponent<Renderer>().material.color = Color.black;
+            Floor1Block6.GetComponent<Renderer>().material.color = Color.black;
+            Floor1Block7.GetComponent<Renderer>().material.color = Color.black;
+            Floor1Block8.GetComponent<Renderer>().material.color = Color.black;
+            GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = true;
         }
         else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 20)
         {

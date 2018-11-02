@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Quzigame.unity
     guid: 0a8a0868d79d5b94484d7ddaaa317273
+  - enabled: 1
+    path: Assets/Title.unity
+    guid: aecc31a9b784e4544ba7caf2f00fbaee
   m_configObjects: {}

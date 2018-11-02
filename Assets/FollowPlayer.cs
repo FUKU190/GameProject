@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FollowPlayer : MonoBehaviour
 {
 
     public Transform target;    // ターゲットへの参照
     private Vector3 offset;     // 相対座標
+
 
     void Start()
     {
@@ -19,5 +21,4 @@ public class FollowPlayer : MonoBehaviour
         // 自分自身の座標に、targetの座標に相対座標を足した値を設定する
         GetComponent<Transform>().position = target.position + offset;
     }
-
 }
