@@ -150,7 +150,7 @@ public class Quiz : MonoBehaviour
             GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
             //Debug.Log("IN");
             MyScript.speed = 5;
-            joyController.transform.position = new Vector2(970, 120);
+            joyController.transform.position = new Vector2(54,-54);
             MoveBlock.posision += 20;
             mission.alpha = 0;
         }

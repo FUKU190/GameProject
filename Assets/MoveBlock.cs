@@ -30,6 +30,10 @@ public class MoveBlock : MonoBehaviour
         {
             upspeed = 2.5f;
         }
+        if(this.gameObject.transform.position.y >= 160)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.white;
+        }
         if (this.gameObject.transform.position.y >= 140)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.magenta;

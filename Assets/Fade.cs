@@ -14,19 +14,16 @@ public class Fade : MonoBehaviour
         a = Panel.GetComponent<Image>().color.a;
     }
 
-    void Update()
+    public void OnClick()
     {
-        if (Input.GetMouseButton(0))
-        {
             StartCoroutine("LoadSce");
-        }
     }
 
     IEnumerator LoadSce()
     {        
-        while (a < 20)
+        while (a < 3.5)
         {
-            Panel.GetComponent<Image>().color += new Color(0, 0, 0, 0.0006f);
+            Panel.GetComponent<Image>().color += new Color(0, 0, 0, 0.005f);
             a += 0.01f;
             yield return null;
         }
