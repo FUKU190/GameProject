@@ -14,7 +14,7 @@ public class ObjectTap71 : MonoBehaviour
     public bool BlockActiv, Quizload;
     float dis7;
     public Text text;
-    public CanvasGroup canvas07,missiontext6;
+    public CanvasGroup canvas07,missiontext6,textbox7;
     bool Quizload7 = true;
 
     // Start is called before the first frame update
@@ -82,7 +82,7 @@ public class ObjectTap71 : MonoBehaviour
     }
     public void Countrandom()
     {
-        numrandom = Random.Range(1, 7);
+        numrandom = Random.Range(1, 15);
     }
     IEnumerator QuizStart7()
     {
@@ -92,6 +92,7 @@ public class ObjectTap71 : MonoBehaviour
             joyController7.transform.position = new Vector2(1200, 120);
             missiontext6.alpha = 1;
             yield return new WaitForSeconds(2.0f);
+            textbox7.alpha = 1;
             canvas07.alpha = 1;
             canvas07.interactable = true;
             GameObject.Find("QuizObject").GetComponent<Quiz>().Nolmacount = 70;

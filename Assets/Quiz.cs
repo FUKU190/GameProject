@@ -14,7 +14,7 @@ public class Quiz : MonoBehaviour
     [Range(0.001f, 0.3f)]
     float IntervalForCharDisplay;                      // 1文字の表示にかける時間
     int RandomNum = 0;
-    int ClearCount = 0;
+    public int ClearCount = 0;
     public int Count, Nolmacount;
     string Ans;                                        //答え合わせ用の文字列を格納する変数
     private int currentSentenceNum = 0;                //現在表示している文章番号
@@ -22,9 +22,8 @@ public class Quiz : MonoBehaviour
     private float timeUntilDisplay = 0;                // 表示にかかる時間
     private float timeBeganDisplay = 1;                // 文字列の表示を開始した時間
     int lastUpdateCharCount = -1;                      // 表示中の文字数
-    public MyScript MyScript;
     public MoveBlock MoveBlock;
-    public CanvasGroup canvas, QuizText,mission;
+    public CanvasGroup canvas, QuizText,mission,textbox;
     public bool posisionUp = false;
 
     void Start()
@@ -50,7 +49,6 @@ public class Quiz : MonoBehaviour
     {
         if (Count == Nolmacount)
         {
-            ClearCount++;
             EndQuiz();
         }
         //表示される文字数を計算
@@ -71,7 +69,7 @@ public class Quiz : MonoBehaviour
     {
 
         //リストからランダムで1問取る
-        RandomNum = Random.Range(1, 100);
+        RandomNum = Random.Range(1, 99);
         Ans = csvData[RandomNum][1];
         currentSentence = csvData[RandomNum][0];
         Select1.text = csvData[RandomNum][2];
@@ -147,12 +145,24 @@ public class Quiz : MonoBehaviour
     {
         if (posisionUp == false)
         {
-            GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
-            //Debug.Log("IN");
-            MyScript.speed = 5;
-            joyController.transform.position = new Vector2(54,-54);
-            MoveBlock.posision += 20;
-            mission.alpha = 0;
+            ClearCount++;
+            if (ClearCount <= 6)
+            {
+                Debug.Log("IN");
+                textbox.alpha = 0;
+                GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
+                joyController.transform.position = new Vector3(947, 130 ,0);
+                MoveBlock.posision += 20;
+                mission.alpha = 0;
+                posisionUp = true;
+            }
+            else if(ClearCount == 7)
+            {
+                GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
+                joyController.transform.position = new Vector3(947, 130, 0);
+                MoveBlock.posision += 30;
+                mission.alpha = 0;
+            }
         }
         else if(posisionUp)
         {

@@ -65,6 +65,6 @@ public class ObjectTap2 : MonoBehaviour
     }
     public void Countrandom2()
     {
-        numrandom2 = Random.Range(1, 7);
+        numrandom2 = Random.Range(1, 15);
     }
 }

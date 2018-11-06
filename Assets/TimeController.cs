@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class TimeController : MonoBehaviour
 {
     public float Timer;
-    public Text timetext;
+    public Text timetext,conditionstext;
     string min, sec;
-    public MyScript MyScript;
+    public GameObject joystick;
+    public CanvasGroup Offcanvas;
     
 
     // Start is called before the first frame update
@@ -34,7 +35,10 @@ public class TimeController : MonoBehaviour
         if(Timer <= 0)
         {
             timetext.text = "0:00";
-            MyScript.speed = 0;
+            joystick.transform.position = new Vector2(1200, 120);
+            Offcanvas.alpha = 0;
+            Offcanvas.interactable = false;
+            conditionstext.text = "TIME OVER";
         }
     }
 }

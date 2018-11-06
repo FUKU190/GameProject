@@ -17,14 +17,13 @@ public class ObjectTap11 : MonoBehaviour
     float dis1;
     Vector3 pos1, pos2;
     public Text text;
-    public CanvasGroup canvas02,missiontext1;
+    public CanvasGroup canvas02,missiontext1,textbox2;
 
     // Start is called before the first frame update
     void Start()
     {
 
     }
-
 
     // Update is called once per frame
     public void OnClick()
@@ -66,7 +65,6 @@ public class ObjectTap11 : MonoBehaviour
         //Debug.Log(dis1);
         if (dis1 <= num)
         {
-
             BlockActiv = true;
         }
         else
@@ -95,9 +93,10 @@ public class ObjectTap11 : MonoBehaviour
         if (Quizload)
         {
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
-            joyController2.transform.position = new Vector2(1200, 120);
+            joyController2.transform.position = new Vector2(1200, 100);
             missiontext1.alpha = 1;
             yield return new WaitForSeconds(2.0f);
+            textbox2.alpha = 1;
             canvas02.alpha = 1;
             canvas02.interactable = true;
             GameObject.Find("QuizObject").GetComponent<Quiz>().Nolmacount = 20;

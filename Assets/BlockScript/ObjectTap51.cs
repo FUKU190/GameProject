@@ -14,7 +14,7 @@ public class ObjectTap51 : MonoBehaviour
     public bool BlockActiv, Quizload;
     float dis4;
     public Text text;
-    public CanvasGroup canvas05,missiontext4;
+    public CanvasGroup canvas05,missiontext4,textbox5;
     bool Quizload5 = true;
 
     // Start is called before the first frame update
@@ -93,6 +93,7 @@ public class ObjectTap51 : MonoBehaviour
             missiontext4.alpha = 1;
             joyController5.transform.position = new Vector2(1200, 120);
             yield return new WaitForSeconds(2.0f);
+            textbox5.alpha = 1;
             canvas05.alpha = 1;
             canvas05.interactable = true;
             GameObject.Find("QuizObject").GetComponent<Quiz>().Nolmacount = 50;

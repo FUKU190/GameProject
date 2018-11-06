@@ -34,79 +34,72 @@ public class ObjectOllClrear : MonoBehaviour
             Floor1Block6.GetComponent<Renderer>().material.color = Color.black;
             Floor1Block7.GetComponent<Renderer>().material.color = Color.black;
             Floor1Block8.GetComponent<Renderer>().material.color = Color.black;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = true;
         }
         else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 20)
         {
-            Floor2Block1.GetComponent<Renderer>().material.color = Color.white;
-            Floor2Block2.GetComponent<Renderer>().material.color = Color.white;
-            Floor2Block3.GetComponent<Renderer>().material.color = Color.white;
-            Floor2Block4.GetComponent<Renderer>().material.color = Color.white;
-            Floor2Block5.GetComponent<Renderer>().material.color = Color.white;
-            Floor2Block6.GetComponent<Renderer>().material.color = Color.white;
-            Floor2Block7.GetComponent<Renderer>().material.color = Color.white;
-            Floor2Block8.GetComponent<Renderer>().material.color = Color.white;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
+            Floor2Block1.GetComponent<Renderer>().material.color = Color.black;
+            Floor2Block2.GetComponent<Renderer>().material.color = Color.black;
+            Floor2Block3.GetComponent<Renderer>().material.color = Color.black;
+            Floor2Block4.GetComponent<Renderer>().material.color = Color.black;
+            Floor2Block5.GetComponent<Renderer>().material.color = Color.black;
+            Floor2Block6.GetComponent<Renderer>().material.color = Color.black;
+            Floor2Block7.GetComponent<Renderer>().material.color = Color.black;
+            Floor2Block8.GetComponent<Renderer>().material.color = Color.black;
         }
         else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 30)
         {
-            Floor3Block1.GetComponent<Renderer>().material.color = Color.white;
-            Floor3Block2.GetComponent<Renderer>().material.color = Color.white;
-            Floor3Block3.GetComponent<Renderer>().material.color = Color.white;
-            Floor3Block4.GetComponent<Renderer>().material.color = Color.white;
-            Floor3Block5.GetComponent<Renderer>().material.color = Color.white;
-            Floor3Block6.GetComponent<Renderer>().material.color = Color.white;
-            Floor3Block7.GetComponent<Renderer>().material.color = Color.white;
-            Floor3Block8.GetComponent<Renderer>().material.color = Color.white;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
+            Floor3Block1.GetComponent<Renderer>().material.color = Color.black;
+            Floor3Block2.GetComponent<Renderer>().material.color = Color.black;
+            Floor3Block3.GetComponent<Renderer>().material.color = Color.black;
+            Floor3Block4.GetComponent<Renderer>().material.color = Color.black;
+            Floor3Block5.GetComponent<Renderer>().material.color = Color.black;
+            Floor3Block6.GetComponent<Renderer>().material.color = Color.black;
+            Floor3Block7.GetComponent<Renderer>().material.color = Color.black;
+            Floor3Block8.GetComponent<Renderer>().material.color = Color.black;
         }
         else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 40)
         {
-            Floor4Block1.GetComponent<Renderer>().material.color = Color.white;
-            Floor4Block2.GetComponent<Renderer>().material.color = Color.white;
-            Floor4Block3.GetComponent<Renderer>().material.color = Color.white;
-            Floor4Block4.GetComponent<Renderer>().material.color = Color.white;
-            Floor4Block5.GetComponent<Renderer>().material.color = Color.white;
-            Floor4Block6.GetComponent<Renderer>().material.color = Color.white;
-            Floor4Block7.GetComponent<Renderer>().material.color = Color.white;
-            Floor4Block8.GetComponent<Renderer>().material.color = Color.white;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
+            Floor4Block1.GetComponent<Renderer>().material.color = Color.black;
+            Floor4Block2.GetComponent<Renderer>().material.color = Color.black;
+            Floor4Block3.GetComponent<Renderer>().material.color = Color.black;
+            Floor4Block4.GetComponent<Renderer>().material.color = Color.black;
+            Floor4Block5.GetComponent<Renderer>().material.color = Color.black;
+            Floor4Block6.GetComponent<Renderer>().material.color = Color.black;
+            Floor4Block7.GetComponent<Renderer>().material.color = Color.black;
+            Floor4Block8.GetComponent<Renderer>().material.color = Color.black;
         }
         else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 50)
         {
-            Floor5Block1.GetComponent<Renderer>().material.color = Color.white;
-            Floor5Block2.GetComponent<Renderer>().material.color = Color.white;
-            Floor5Block3.GetComponent<Renderer>().material.color = Color.white;
-            Floor5Block4.GetComponent<Renderer>().material.color = Color.white;
-            Floor5Block5.GetComponent<Renderer>().material.color = Color.white;
-            Floor5Block6.GetComponent<Renderer>().material.color = Color.white;
-            Floor5Block7.GetComponent<Renderer>().material.color = Color.white;
-            Floor5Block8.GetComponent<Renderer>().material.color = Color.white;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
+            Floor5Block1.GetComponent<Renderer>().material.color = Color.black;
+            Floor5Block2.GetComponent<Renderer>().material.color = Color.black;
+            Floor5Block3.GetComponent<Renderer>().material.color = Color.black;
+            Floor5Block4.GetComponent<Renderer>().material.color = Color.black;
+            Floor5Block5.GetComponent<Renderer>().material.color = Color.black;
+            Floor5Block6.GetComponent<Renderer>().material.color = Color.black;
+            Floor5Block7.GetComponent<Renderer>().material.color = Color.black;
+            Floor5Block8.GetComponent<Renderer>().material.color = Color.black;
         }
         else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 60)
         {
-            Floor6Block1.GetComponent<Renderer>().material.color = Color.white;
-            Floor6Block2.GetComponent<Renderer>().material.color = Color.white;
-            Floor6Block3.GetComponent<Renderer>().material.color = Color.white;
-            Floor6Block4.GetComponent<Renderer>().material.color = Color.white;
-            Floor6Block5.GetComponent<Renderer>().material.color = Color.white;
-            Floor6Block6.GetComponent<Renderer>().material.color = Color.white;
-            Floor6Block7.GetComponent<Renderer>().material.color = Color.white;
-            Floor6Block8.GetComponent<Renderer>().material.color = Color.white;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
+            Floor6Block1.GetComponent<Renderer>().material.color = Color.black;
+            Floor6Block2.GetComponent<Renderer>().material.color = Color.black;
+            Floor6Block3.GetComponent<Renderer>().material.color = Color.black;
+            Floor6Block4.GetComponent<Renderer>().material.color = Color.black;
+            Floor6Block5.GetComponent<Renderer>().material.color = Color.black;
+            Floor6Block6.GetComponent<Renderer>().material.color = Color.black;
+            Floor6Block7.GetComponent<Renderer>().material.color = Color.black;
+            Floor6Block8.GetComponent<Renderer>().material.color = Color.black;
         }
         else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 70)
         {
-            Floor7Block1.GetComponent<Renderer>().material.color = Color.white;
-            Floor7Block2.GetComponent<Renderer>().material.color = Color.white;
-            Floor7Block3.GetComponent<Renderer>().material.color = Color.white;
-            Floor7Block4.GetComponent<Renderer>().material.color = Color.white;
-            Floor7Block5.GetComponent<Renderer>().material.color = Color.white;
-            Floor7Block6.GetComponent<Renderer>().material.color = Color.white;
-            Floor7Block7.GetComponent<Renderer>().material.color = Color.white;
-            Floor7Block8.GetComponent<Renderer>().material.color = Color.white;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
+            Floor7Block1.GetComponent<Renderer>().material.color = Color.black;
+            Floor7Block2.GetComponent<Renderer>().material.color = Color.black;
+            Floor7Block3.GetComponent<Renderer>().material.color = Color.black;
+            Floor7Block4.GetComponent<Renderer>().material.color = Color.black;
+            Floor7Block5.GetComponent<Renderer>().material.color = Color.black;
+            Floor7Block6.GetComponent<Renderer>().material.color = Color.black;
+            Floor7Block7.GetComponent<Renderer>().material.color = Color.black;
+            Floor7Block8.GetComponent<Renderer>().material.color = Color.black;
         }
     }
 }

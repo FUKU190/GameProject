@@ -17,6 +17,7 @@ public class ObjectTap : MonoBehaviour {
     public bool Authorization = false;
     float dis1;
     public Text text;
+    public CanvasGroup TextBox;
 
     // Start is called before the first frame update
     void Start()
@@ -87,18 +88,16 @@ public class ObjectTap : MonoBehaviour {
     }
     public void Countrandom()
     {
-        numrandom = Random.Range(1, 7);
+        numrandom = Random.Range(1, 8);
     }
     IEnumerator QuizStart()
     { 
         missiontext.alpha = 1;
         yield return new WaitForSeconds(2.0f);
-        CheckAuthorization();
-    }
-    public void CheckAuthorization(){
         if (Authorization == false)
         {
-            joystickbutton.transform.position = new Vector2(54,54);
+            joystickbutton.transform.position = new Vector2(1200, 120);
+            TextBox.alpha = 1;
             canvas.alpha = 1;
             canvas.interactable = true;
             QuizObject.SetActive(true);
