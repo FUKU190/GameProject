@@ -6,82 +6,86 @@ using UnityEngine.UI;
 public class ObjectTap : MonoBehaviour {
 
 
-    private int ClickCount;
+    private int Touchnum;
     public GameObject Block1, Block2, Block3, Block4;
     public GameObject Block5, Block6, Block7, Block8;
-    public GameObject PlayerPosision,QuizObject,joystickbutton;
+    public GameObject QuizObject,joystick,Aura01,MoveBlock;
     public CanvasGroup canvas,missiontext;
-    float num = 1.5f;
-    int numrandom;
-    bool BlockActiv;
-    public bool Authorization = false;
-    float dis1;
+    int numrandom,checknum1;
+    bool Authorization = false;
     public Text text;
     public CanvasGroup TextBox;
+    public MovingPlayer MovingPlayer1;
 
     // Start is called before the first frame update
     void Start()
     {
         QuizObject.SetActive(false);
+        Aura01.SetActive(false);
         canvas.alpha = 0;
         canvas.interactable = false;
+        checknum1 = 0;
     }
 
     // Update is called once per frame
-    public void OnClick()
+    void OnCollisionEnter(Collision col01)
     {
         Countrandom();
-        ClickCount = numrandom;
-        if(ClickCount == 1 && BlockActiv)
+        if (numrandom != checknum1)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            checknum1 = numrandom;
+            Touchnum = numrandom;
+            if (Touchnum == 1 && col01.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                Aura01.SetActive(false);
+            }
+            else if (Touchnum == 2 && col01.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.green;
+                Aura01.SetActive(false);
+            }
+            else if (Touchnum == 3 && col01.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+                Aura01.SetActive(true);
+            }
+            else if (Touchnum == 4 && col01.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+                Aura01.SetActive(false);
+            }
+            else if (Touchnum == 5 && col01.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.grey;
+                Aura01.SetActive(false);
+            }
+            else if (Touchnum == 6 && col01.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.cyan;
+                Aura01.SetActive(false);
+            }
+            else if (Touchnum == 7 && col01.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+                Aura01.SetActive(false);
+            }
         }
-        else if(ClickCount == 2 && BlockActiv)
+        else if (numrandom == checknum1)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
-        }
-        else if(ClickCount == 3 && BlockActiv)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
-        }
-        else if (ClickCount == 4 && BlockActiv)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-        }
-        else if (ClickCount == 5 && BlockActiv)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.grey;
-        }
-        else if (ClickCount == 6 && BlockActiv)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-        }
-        else if (ClickCount == 7 && BlockActiv)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+            Countrandom();
         }
     }
     private void Update()
     {
-        dis1 = Vector3.Distance(this.gameObject.transform.position, PlayerPosision.transform.position);
-        //Debug.Log(dis1);
-        if (dis1 <= num)
-        {
-
-            BlockActiv = true;
-        }
-        else
-        {
-            BlockActiv = false;
-        }
-        if ((Block1.GetComponent<Renderer>().material.color == Color.red) )
-            //(Block2.GetComponent<Renderer>().material.color == Color.red) &&
-            //(Block3.GetComponent<Renderer>().material.color == Color.red) &&
-            //(Block4.GetComponent<Renderer>().material.color == Color.red) &&
-            //(Block5.GetComponent<Renderer>().material.color == Color.red) &&
-            //(Block6.GetComponent<Renderer>().material.color == Color.red) &&
-            //(Block7.GetComponent<Renderer>().material.color == Color.red) &&
-            //(Block8.GetComponent<Renderer>().material.color == Color.red))
+        if ((Block1.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) )
+        //(Block2.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) &&
+        //(Block3.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) &&
+        //(Block4.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) &&
+        //(Block5.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) &&
+        //(Block6.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) &&
+        //(Block7.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) &&
+        //(Block8.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color))
         {
             StartCoroutine("QuizStart");
         }
@@ -91,12 +95,13 @@ public class ObjectTap : MonoBehaviour {
         numrandom = Random.Range(1, 8);
     }
     IEnumerator QuizStart()
-    { 
+    {
         missiontext.alpha = 1;
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.5f);
         if (Authorization == false)
         {
-            joystickbutton.transform.position = new Vector2(1200, 120);
+            MovingPlayer1.SPEED = 0;
+            joystick.SetActive(false);
             TextBox.alpha = 1;
             canvas.alpha = 1;
             canvas.interactable = true;

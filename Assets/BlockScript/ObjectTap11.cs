@@ -6,16 +6,12 @@ using UnityEngine.UI;
 
 public class ObjectTap11 : MonoBehaviour
 {
-    private int ClickCount;
+    private int TouchCount21;
     public GameObject Floor2Block1, Floor2Block2, Floor2Block3, Floor2Block4;
     public GameObject Floor2Block5, Floor2Block6, Floor2Block7, Floor2Block8;
-    public GameObject PlayerPosision02,joyController2;
-    float num = 1.5f;
+    public GameObject joystickF2;
     int numrandom;
-    public bool BlockActiv;
     bool Quizload = true;
-    float dis1;
-    Vector3 pos1, pos2;
     public Text text;
     public CanvasGroup canvas02,missiontext1,textbox2;
 
@@ -26,51 +22,41 @@ public class ObjectTap11 : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void OnClick()
+    void OnCollisionEnter(Collision col2)
     {
         Countrandom();
-        ClickCount = numrandom;
-        if (ClickCount == 1 || ClickCount == 8 && BlockActiv)
+        TouchCount21 = numrandom;
+        if (TouchCount21 == 1 || TouchCount21 == 8 && col2.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
-        else if (ClickCount == 2 || ClickCount == 9 && BlockActiv)
+        else if (TouchCount21 == 2 || TouchCount21 == 9 && col2.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.green;
         }
-        else if (ClickCount == 3 || ClickCount == 10 && BlockActiv)
+        else if (TouchCount21 == 3 || TouchCount21 == 10 && col2.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.red;
         }
-        else if (ClickCount == 4 || ClickCount == 11 && BlockActiv)
+        else if (TouchCount21 == 4 || TouchCount21 == 11 && col2.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
-        else if (ClickCount == 5 || ClickCount == 12 && BlockActiv)
+        else if (TouchCount21 == 5 || TouchCount21 == 12 && col2.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.grey;
         }
-        else if (ClickCount == 6 || ClickCount == 13 && BlockActiv)
+        else if (TouchCount21 == 6 || TouchCount21 == 13 && col2.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.cyan;
         }
-        else if (ClickCount == 7 || ClickCount == 14 && BlockActiv)
+        else if (TouchCount21 == 7 || TouchCount21 == 14 && col2.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         }
     }
     private void Update()
     {
-        dis1 = Vector3.Distance(this.gameObject.transform.position, PlayerPosision02.transform.position);
-        //Debug.Log(dis1);
-        if (dis1 <= num)
-        {
-            BlockActiv = true;
-        }
-        else
-        {
-            BlockActiv = false;
-        }
         if ((Floor2Block1.GetComponent<Renderer>().material.color == Color.blue) )
         // (Floor2Block2.GetComponent<Renderer>().material.color == Color.blue) &&
         // (Floor2Block3.GetComponent<Renderer>().material.color == Color.blue) &&
@@ -92,8 +78,8 @@ public class ObjectTap11 : MonoBehaviour
     {
         if (Quizload)
         {
+            joystickF2.SetActive(false);
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
-            joyController2.transform.position = new Vector2(1200, 100);
             missiontext1.alpha = 1;
             yield return new WaitForSeconds(2.0f);
             textbox2.alpha = 1;

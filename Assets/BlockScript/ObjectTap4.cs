@@ -4,70 +4,55 @@ using UnityEngine;
 
 public class ObjectTap4 : MonoBehaviour
 {
-
-    private int ClickCount4;
-    int numrandom4;
-    bool BlockActiv04;
-    float dis4;
-    public GameObject PlayerPosision;
+    private int TouchCount4;
+    int TouchNum4;
 
     // Start is called before the first frame update
     void Start()
     {
-        BlockActiv04 = false;
+
     }
+    // Update is called once per frame
     private void Update()
     {
-        dis4 = Vector3.Distance(this.gameObject.transform.position, PlayerPosision.transform.position);
-        //Debug.Log(dis1);
-        if (dis4 <= 1.5f)
-        {
-
-            BlockActiv04 = true;
-        }
-        else
-        {
-            BlockActiv04 = false;
-        }
+    
     }
 
-
-    // Update is called once per frame
-    public void OnClick()
+    void OnCollisionEnter(Collision col04)
     {
         Countrandom4();
-        ClickCount4 = numrandom4;
-        if (ClickCount4 == 1 && BlockActiv04 == true)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
-        }
-        else if (ClickCount4 == 2 && BlockActiv04 == true)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
-        }
-        else if (ClickCount4 == 3 && BlockActiv04 == true)
+        TouchCount4= TouchNum4;
+        if (TouchCount4 == 1 || TouchCount4 == 8 && col04.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
-        else if (ClickCount4 == 4 && BlockActiv04 == true)
+        else if (TouchCount4 == 2 || TouchCount4 == 9 && col04.gameObject.tag == "Player")
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.green;
+        }
+        else if (TouchCount4 == 3 || TouchCount4 == 10 && col04.gameObject.tag == "Player")
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
+        }
+        else if (TouchCount4 == 4 || TouchCount4 == 11 && col04.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
-        else if (ClickCount4 == 5 && BlockActiv04 == true)
+        else if (TouchCount4 == 5 || TouchCount4 == 12 && col04.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.grey;
         }
-        else if (ClickCount4 == 6 && BlockActiv04 == true)
+        else if (TouchCount4 == 6 || TouchCount4 == 13 && col04.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.cyan;
         }
-        else if (ClickCount4 == 7 && BlockActiv04 == true)
+        else if (TouchCount4 == 7 || TouchCount4 == 14 && col04.gameObject.tag == "Player")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         }
     }
     public void Countrandom4()
     {
-        numrandom4 = Random.Range(1, 7);
+        TouchNum4 = Random.Range(1, 15);
     }
 }
