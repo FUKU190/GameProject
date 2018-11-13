@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectTap3 : MonoBehaviour
+public class ObjectTap5 : MonoBehaviour
 {
-    int TouchNum3,checknum3;
+    int TouchNum5, TouchCount5,checknum5;
+    public GameObject Aura51;
 
     // Start is called before the first frame update
     void Start()
@@ -14,51 +15,51 @@ public class ObjectTap3 : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-      
+
     }
 
-    void OnCollisionEnter(Collision col03)
+    void OnCollisionEnter(Collision col05)
     {
-        if (TouchNum3 != checknum3)
+        Countrandom5();
+        if (TouchCount5 != checknum5)
         {
-            Countrandom3();
-            checknum3 = TouchNum3;
-            if (checknum3 == 1 && col03.gameObject.tag == "Player")
+            checknum5 = TouchNum5;
+            if (checknum5 == 1 && col05.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.blue;
             }
-            else if (checknum3 == 2 && col03.gameObject.tag == "Player")
+            else if (checknum5 == 2 && col05.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.green;
             }
-            else if (checknum3 == 3 && col03.gameObject.tag == "Player")
+            else if (checknum5 == 3 && col05.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
             }
-            else if (checknum3 == 4 && col03.gameObject.tag == "Player")
+            else if (checknum5 == 4 && col05.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.yellow;
             }
-            else if (checknum3 == 5 && col03.gameObject.tag == "Player")
+            else if (checknum5 == 5 && col05.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.grey;
             }
-            else if (checknum3 == 6 && col03.gameObject.tag == "Player")
+            else if (checknum5 == 6 && col05.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.cyan;
             }
-            else if (checknum3 == 7 && col03.gameObject.tag == "Player")
+            else if (checknum5 == 7 && col05.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.magenta;
             }
         }
-        else if (TouchNum3 == checknum3)
+        else if (checknum5 == TouchNum5)
         {
-            Countrandom3();
+            Countrandom5();
         }
     }
-    public void Countrandom3()
+    public void Countrandom5()
     {
-        TouchNum3 = Random.Range(1, 15);
+        TouchNum5 = Random.Range(1, 8);
     }
 }

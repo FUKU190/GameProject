@@ -38,37 +38,30 @@ public class ObjectTap : MonoBehaviour {
             if (Touchnum == 1 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.blue;
-                Aura01.SetActive(false);
             }
             else if (Touchnum == 2 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.green;
-                Aura01.SetActive(false);
             }
             else if (Touchnum == 3 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
-                Aura01.SetActive(true);
             }
             else if (Touchnum == 4 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-                Aura01.SetActive(false);
             }
             else if (Touchnum == 5 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.grey;
-                Aura01.SetActive(false);
             }
             else if (Touchnum == 6 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-                Aura01.SetActive(false);
             }
             else if (Touchnum == 7 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.magenta;
-                Aura01.SetActive(false);
             }
         }
         else if (numrandom == checknum1)
@@ -78,6 +71,15 @@ public class ObjectTap : MonoBehaviour {
     }
     private void Update()
     {
+        if(this.gameObject.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color)
+        {
+            Aura01.SetActive(true);
+        }
+        else
+        {
+            Aura01.SetActive(false);
+        }
+
         if ((Block1.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) )
         //(Block2.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) &&
         //(Block3.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) &&

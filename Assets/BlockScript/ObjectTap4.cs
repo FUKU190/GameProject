@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class ObjectTap4 : MonoBehaviour
 {
-    private int TouchCount4;
-    int TouchNum4;
+    int TouchNum4,checknum4;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        checknum4 = 0;
     }
     // Update is called once per frame
     private void Update()
@@ -20,39 +19,46 @@ public class ObjectTap4 : MonoBehaviour
 
     void OnCollisionEnter(Collision col04)
     {
-        Countrandom4();
-        TouchCount4= TouchNum4;
-        if (TouchCount4 == 1 || TouchCount4 == 8 && col04.gameObject.tag == "Player")
+        if (TouchNum4 != checknum4)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            Countrandom4();
+            checknum4 = TouchNum4;
+            if (checknum4 == 1 && col04.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            }
+            else if (checknum4 == 2 && col04.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.green;
+            }
+            else if (checknum4 == 3 && col04.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+            }
+            else if (checknum4 == 4 && col04.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            }
+            else if (checknum4 == 5 && col04.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.grey;
+            }
+            else if (checknum4 == 6 && col04.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.cyan;
+            }
+            else if (checknum4 == 7 && col04.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+            }
         }
-        else if (TouchCount4 == 2 || TouchCount4 == 9 && col04.gameObject.tag == "Player")
+        else if (TouchNum4 == checknum4)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
-        }
-        else if (TouchCount4 == 3 || TouchCount4 == 10 && col04.gameObject.tag == "Player")
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
-        }
-        else if (TouchCount4 == 4 || TouchCount4 == 11 && col04.gameObject.tag == "Player")
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-        }
-        else if (TouchCount4 == 5 || TouchCount4 == 12 && col04.gameObject.tag == "Player")
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.grey;
-        }
-        else if (TouchCount4 == 6 || TouchCount4 == 13 && col04.gameObject.tag == "Player")
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-        }
-        else if (TouchCount4 == 7 || TouchCount4 == 14 && col04.gameObject.tag == "Player")
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+            Countrandom4();
         }
     }
     public void Countrandom4()
     {
-        TouchNum4 = Random.Range(1, 15);
+        TouchNum4 = Random.Range(1, 8);
     }
 }
