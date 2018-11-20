@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class ObjectTap5 : MonoBehaviour
 {
-    int TouchNum5, TouchCount5,checknum5;
-    public GameObject Aura51;
+    int TouchNum5,checknum5;
+    public GameObject Aura05,MoveBlock05;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        checknum5 = 0;
+        Aura05.SetActive(false);
     }
     // Update is called once per frame
     private void Update()
     {
-
+     
     }
 
     void OnCollisionEnter(Collision col05)
     {
         Countrandom5();
-        if (TouchCount5 != checknum5)
+        if (TouchNum5 != checknum5)
         {
             checknum5 = TouchNum5;
             if (checknum5 == 1 && col05.gameObject.tag == "Player")
@@ -56,6 +57,14 @@ public class ObjectTap5 : MonoBehaviour
         else if (checknum5 == TouchNum5)
         {
             Countrandom5();
+        }
+        if (this.gameObject.GetComponent<Renderer>().material.color == MoveBlock05.GetComponent<Renderer>().material.color)
+        {
+            Aura05.SetActive(true);
+        }
+        else
+        {
+            Aura05.SetActive(false);
         }
     }
     public void Countrandom5()

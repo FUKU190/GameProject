@@ -25,7 +25,7 @@ public class ObjectOllClrear : MonoBehaviour
     }
     public void ClearColor()
     {
-        if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 10)
+        if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 70)
         {
             Floor1Block1.GetComponent<Renderer>().material.color = Color.black;
             Floor1Block2.GetComponent<Renderer>().material.color = Color.black;
@@ -35,9 +35,17 @@ public class ObjectOllClrear : MonoBehaviour
             Floor1Block6.GetComponent<Renderer>().material.color = Color.black;
             Floor1Block7.GetComponent<Renderer>().material.color = Color.black;
             Floor1Block8.GetComponent<Renderer>().material.color = Color.black;
-            Destroy(Aura1);
+            Floor1Block1.GetComponent<BoxCollider>().enabled = false;
+            Floor1Block2.GetComponent<BoxCollider>().enabled = false;
+            Floor1Block3.GetComponent<BoxCollider>().enabled = false;
+            Floor1Block4.GetComponent<BoxCollider>().enabled = false;
+            Floor1Block5.GetComponent<BoxCollider>().enabled = false;
+            Floor1Block6.GetComponent<BoxCollider>().enabled = false;
+            Floor1Block7.GetComponent<BoxCollider>().enabled = false;
+            Floor1Block8.GetComponent<BoxCollider>().enabled = false;
+            Destroy(Aura7);
         }
-        else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 20)
+        else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 60)
         {
             Floor2Block1.GetComponent<Renderer>().material.color = Color.black;
             Floor2Block2.GetComponent<Renderer>().material.color = Color.black;
@@ -47,8 +55,9 @@ public class ObjectOllClrear : MonoBehaviour
             Floor2Block6.GetComponent<Renderer>().material.color = Color.black;
             Floor2Block7.GetComponent<Renderer>().material.color = Color.black;
             Floor2Block8.GetComponent<Renderer>().material.color = Color.black;
+            Destroy(Aura6);
         }
-        else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 30)
+        else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 50)
         {
             Floor3Block1.GetComponent<Renderer>().material.color = Color.black;
             Floor3Block2.GetComponent<Renderer>().material.color = Color.black;
@@ -58,6 +67,7 @@ public class ObjectOllClrear : MonoBehaviour
             Floor3Block6.GetComponent<Renderer>().material.color = Color.black;
             Floor3Block7.GetComponent<Renderer>().material.color = Color.black;
             Floor3Block8.GetComponent<Renderer>().material.color = Color.black;
+            Destroy(Aura5);
         }
         else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 40)
         {
@@ -69,8 +79,9 @@ public class ObjectOllClrear : MonoBehaviour
             Floor4Block6.GetComponent<Renderer>().material.color = Color.black;
             Floor4Block7.GetComponent<Renderer>().material.color = Color.black;
             Floor4Block8.GetComponent<Renderer>().material.color = Color.black;
+            Destroy(Aura4);
         }
-        else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 50)
+        else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 30)
         {
             Floor5Block1.GetComponent<Renderer>().material.color = Color.black;
             Floor5Block2.GetComponent<Renderer>().material.color = Color.black;
@@ -80,8 +91,9 @@ public class ObjectOllClrear : MonoBehaviour
             Floor5Block6.GetComponent<Renderer>().material.color = Color.black;
             Floor5Block7.GetComponent<Renderer>().material.color = Color.black;
             Floor5Block8.GetComponent<Renderer>().material.color = Color.black;
+            Destroy(Aura3);
         }
-        else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 60)
+        else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 20)
         {
             Floor6Block1.GetComponent<Renderer>().material.color = Color.black;
             Floor6Block2.GetComponent<Renderer>().material.color = Color.black;
@@ -91,8 +103,9 @@ public class ObjectOllClrear : MonoBehaviour
             Floor6Block6.GetComponent<Renderer>().material.color = Color.black;
             Floor6Block7.GetComponent<Renderer>().material.color = Color.black;
             Floor6Block8.GetComponent<Renderer>().material.color = Color.black;
+            Destroy(Aura2);
         }
-        else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 70)
+        else if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 10)
         {
             Floor7Block1.GetComponent<Renderer>().material.color = Color.black;
             Floor7Block2.GetComponent<Renderer>().material.color = Color.black;
@@ -102,6 +115,7 @@ public class ObjectOllClrear : MonoBehaviour
             Floor7Block6.GetComponent<Renderer>().material.color = Color.black;
             Floor7Block7.GetComponent<Renderer>().material.color = Color.black;
             Floor7Block8.GetComponent<Renderer>().material.color = Color.black;
+            Destroy(Aura1);
         }
     }
 }

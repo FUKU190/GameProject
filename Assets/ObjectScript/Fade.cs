@@ -11,6 +11,7 @@ public class Fade : MonoBehaviour
     
     void Start()
     {
+        Debug.Log(PlayerPrefs.GetFloat("TimeScore"));
         a = Panel.GetComponent<Image>().color.a;
     }
 

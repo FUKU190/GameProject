@@ -11,6 +11,7 @@ public class ObjectTap : MonoBehaviour {
     public GameObject Block5, Block6, Block7, Block8;
     public GameObject QuizObject,joystick,Aura01,MoveBlock;
     public CanvasGroup canvas,missiontext;
+    public Animator ani1;
     int numrandom,checknum1;
     bool Authorization = false;
     public Text text;
@@ -34,32 +35,31 @@ public class ObjectTap : MonoBehaviour {
         if (numrandom != checknum1)
         {
             checknum1 = numrandom;
-            Touchnum = numrandom;
-            if (Touchnum == 1 && col01.gameObject.tag == "Player")
+            if (checknum1 == 1 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.blue;
             }
-            else if (Touchnum == 2 && col01.gameObject.tag == "Player")
+            else if (checknum1 == 2 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.green;
             }
-            else if (Touchnum == 3 && col01.gameObject.tag == "Player")
+            else if (checknum1 == 3 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
             }
-            else if (Touchnum == 4 && col01.gameObject.tag == "Player")
+            else if (checknum1 == 4 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.yellow;
             }
-            else if (Touchnum == 5 && col01.gameObject.tag == "Player")
+            else if (checknum1 == 5 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.grey;
             }
-            else if (Touchnum == 6 && col01.gameObject.tag == "Player")
+            else if (checknum1 == 6 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.cyan;
             }
-            else if (Touchnum == 7 && col01.gameObject.tag == "Player")
+            else if (checknum1 == 7 && col01.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.magenta;
             }
@@ -68,10 +68,8 @@ public class ObjectTap : MonoBehaviour {
         {
             Countrandom();
         }
-    }
-    private void Update()
-    {
-        if(this.gameObject.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color)
+
+        if (gameObject.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color)
         {
             Aura01.SetActive(true);
         }
@@ -79,7 +77,9 @@ public class ObjectTap : MonoBehaviour {
         {
             Aura01.SetActive(false);
         }
-
+    }
+    private void Update()
+    {
         if ((Block1.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) )
         //(Block2.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) &&
         //(Block3.GetComponent<Renderer>().material.color == MoveBlock.GetComponent<Renderer>().material.color) &&
@@ -99,10 +99,11 @@ public class ObjectTap : MonoBehaviour {
     IEnumerator QuizStart()
     {
         missiontext.alpha = 1;
-        yield return new WaitForSeconds(1.5f);
         if (Authorization == false)
         {
             MovingPlayer1.SPEED = 0;
+            ani1.SetBool("Run", false);
+            yield return new WaitForSeconds(1.5f);
             joystick.SetActive(false);
             TextBox.alpha = 1;
             canvas.alpha = 1;

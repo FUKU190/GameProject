@@ -7,25 +7,28 @@ public class ObjectTap51 : MonoBehaviour
 {
     public GameObject Floor5Block1, Floor5Block2, Floor5lock3, Floor5Block4;
     public GameObject Floor5Block5, Floor5Block6, Floor5Block7, Floor5Block8;
-    public GameObject joystickF5;
-    int numrandom,checknum5;
+    public GameObject joystickF5,MoveBlock51,Aura51;
+    int numrandom5,checknum5;
     public bool Quizload;
     public Text text;
     public CanvasGroup canvas05,missiontext4,textbox5;
     bool Quizload5 = true;
+    public Animator ani51;
+    public MovingPlayer MovingPlayer5;
 
     // Start is called before the first frame update
     void Start()
     {
         checknum5 = 0;
+        Aura51.SetActive(false);
     }
 
-    void OnCOllisionEnter(Collision col5)
+    void OnCollisionEnter(Collision col5)
     {
-        Countrandom();
-        if (numrandom != checknum5)
+        Countrandom5();
+        if (numrandom5 != checknum5)
         {
-            checknum5 = numrandom;
+            checknum5 = numrandom5;
             if (checknum5 == 1 && col5.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.blue;
@@ -55,38 +58,50 @@ public class ObjectTap51 : MonoBehaviour
                 gameObject.GetComponent<Renderer>().material.color = Color.magenta;
             }
         }
-        else if (numrandom == checknum5)
+        else if (numrandom5 == checknum5)
         {
-            Countrandom();
+            Countrandom5();
+        }
+
+        if(gameObject.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color)
+        {
+            Aura51.SetActive(true);
+        }
+        else
+        {
+            Aura51.SetActive(false);
         }
     }
     private void Update()
     {
-        if ((Floor5Block1.GetComponent<Renderer>().material.color == Color.cyan))
-        // (Floor5Block2.GetComponent<Renderer>().material.color == Color.cyan) &&
-        // (Floor5lock3.GetComponent<Renderer>().material.color == Color.cyan) &&
-        // (Floor5Block4.GetComponent<Renderer>().material.color == Color.cyan) &&
-        // (Floor5Block5.GetComponent<Renderer>().material.color == Color.cyan) &&
-        // (Floor5Block6.GetComponent<Renderer>().material.color == Color.cyan) &&
-        // (Floor5Block7.GetComponent<Renderer>().material.color == Color.cyan) &&
-        // (Floor5Block8.GetComponent<Renderer>().material.color == Color.cyan))
+        if ((Floor5Block1.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color))
+        // (Floor5Block2.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+        // (Floor5lock3.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+        // (Floor5Block4.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+        // (Floor5Block5.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+        // (Floor5Block6.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+        // (Floor5Block7.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+        // (Floor5Block8.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color))
         {
             StartCoroutine("QuizStart5");
         }
     }
         // Update is called once per frame
-        public void Countrandom()
-    {
-        numrandom = Random.Range(1, 7);
-    }
+        public void Countrandom5()
+        {
+            numrandom5 = Random.Range(1, 8);
+        }
     IEnumerator QuizStart5()
     {
         if (Quizload5)
         {
-            joystickF5.SetActive(false); 
+            MovingPlayer5.SPEED = 0;
+            ani51.SetBool("Run", false);
+            ani51.SetBool("Wate", true);
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
             missiontext4.alpha = 1;
             yield return new WaitForSeconds(2.0f);
+            joystickF5.SetActive(false);
             textbox5.alpha = 1;
             canvas05.alpha = 1;
             canvas05.interactable = true;

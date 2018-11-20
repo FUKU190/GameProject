@@ -25,7 +25,8 @@ public class Quiz : MonoBehaviour
     public MovingPlayer MovingPlayer;
     public CanvasGroup canvas, QuizText,mission,textbox;
     public Animator ani;
-    public GameObject JoyStick,AuraPosition;
+    Vector2 joypos;
+    public GameObject JoyStick;
     public bool posisionUp = false;
 
     void Start()
@@ -56,8 +57,8 @@ public class Quiz : MonoBehaviour
         //表示される文字数を計算
         else
         {
+            MovingPlayer.SPEED = 0;
             ani.SetBool("Run", false);
-            ani.SetBool("Wate", true);
             int displayCharCount = (int)(Mathf.Clamp01((Time.time - timeBeganDisplay) / timeUntilDisplay) * currentSentence.Length);
             //表示される文字数が表示している文字数と違う
             if (displayCharCount != lastUpdateCharCount)
@@ -153,21 +154,22 @@ public class Quiz : MonoBehaviour
             if (ClearCount <= 6)
             {
                 JoyStick.SetActive(true);
-                ani.SetBool("Wate", true);
-                MovingPlayer.SPEED = 0.08f;
                 //Debug.Log("IN");
                 textbox.alpha = 0;
+                ani.SetBool("Run", false);
                 GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
-                AuraPosition.transform.position += new Vector3(0, 20, 0);
                 MoveBlock.posision += 20;
                 mission.alpha = 0;
                 posisionUp = true;
             }
             else if(ClearCount == 7)
             {
+                JoyStick.SetActive(true);
+                textbox.alpha = 0;
                 GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
                 MoveBlock.posision += 30;
                 mission.alpha = 0;
+                posisionUp = true;
             }
         }
         else if(posisionUp)

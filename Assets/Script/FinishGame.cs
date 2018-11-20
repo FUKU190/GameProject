@@ -7,6 +7,9 @@ public class FinishGame : MonoBehaviour
 {
     public GameObject joyStick;
     public Text Goaltext;
+    public MovingPlayer Moving0;
+    float Time;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +25,13 @@ public class FinishGame : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            joyStick.transform.position = new Vector2(1200, 120);
-            Goaltext.text = "Finish!!!!!!";
-
+            Moving0.SPEED = 0;
+            joyStick.SetActive(false);
+            Time = GameObject.Find("TimeObject").GetComponent<TimeController>().Timer;
+            PlayerPrefs.SetFloat("TimeScore", Time);
+            PlayerPrefs.Save();
+            Debug.Log(PlayerPrefs.GetFloat("TimeScore"));
         }
     }
+    
 }

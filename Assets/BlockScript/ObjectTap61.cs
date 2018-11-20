@@ -5,70 +5,76 @@ using UnityEngine.UI;
 
 public class ObjectTap61 : MonoBehaviour
 {
-    private int ClickCount;
+    private int TouchNum61;
     public GameObject Floor6Block1, Floor6Block2, Floor6Block3, Floor6Block4;
     public GameObject Floor6Block5, Floor6Block6, Floor6Block7, Floor6Block8;
-    public GameObject PlayerPosision06,joyController6;
-    float num = 1.5f;
+    public GameObject joystick61,MoveBlock61,Aura61;
     int numrandom;
     public bool BlockActiv, Quizload;
-    float dis6;
     public Text text;
     public CanvasGroup canvas06,missiontext5,textbox6;
     bool Quizload6 = true;
+    public MovingPlayer MovingPlayer6;
+    public Animator ani61;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        Aura61.SetActive(false);
+        TouchNum61 = 0;
     }
 
     // Update is called once per frame
-    public void OnClick()
+    void OnCollisionEnter(Collision col61)
     {
-        Countrandom();
-        ClickCount = numrandom;
-        if (ClickCount == 1 || ClickCount == 8 && BlockActiv)
+        Countrandom61();
+        if (TouchNum61 != numrandom)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            TouchNum61 = numrandom;
+            if (TouchNum61 == 1 && col61.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            }
+            else if (TouchNum61 == 2 && col61.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.green;
+            }
+            else if (TouchNum61 == 3 && col61.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+            }
+            else if (TouchNum61 == 4 && col61.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            }
+            else if (TouchNum61 == 5 && col61.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.grey;
+            }
+            else if (TouchNum61 == 6 && col61.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.cyan;
+            }
+            else if (TouchNum61 == 7 && col61.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+            }
         }
-        else if (ClickCount == 2 || ClickCount == 9 && BlockActiv)
+        else if (TouchNum61 == numrandom)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
+            Countrandom61();
         }
-        else if (ClickCount == 3 || ClickCount == 10 && BlockActiv)
+        if (this.gameObject.GetComponent<Renderer>().material.color == MoveBlock61.GetComponent<Renderer>().material.color)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
+            Aura61.SetActive(true);
         }
-        else if (ClickCount == 4 || ClickCount == 11 && BlockActiv)
+        else
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-        }
-        else if (ClickCount == 5 || ClickCount == 12 && BlockActiv)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.grey;
-        }
-        else if (ClickCount == 6 || ClickCount == 13 && BlockActiv)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-        }
-        else if (ClickCount == 7 || ClickCount == 14 && BlockActiv)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+            Aura61.SetActive(false);
         }
     }
     private void Update()
     {
-        dis6 = Vector3.Distance(this.gameObject.transform.position, PlayerPosision06.transform.position);
-        //Debug.Log(dis1);
-        if (dis6 <= num)
-        {
-            BlockActiv = true;
-        }
-        else
-        {
-            BlockActiv = false;
-        }
         if ((Floor6Block1.GetComponent<Renderer>().material.color == Color.yellow))
         // (Floor6Block2.GetComponent<Renderer>().material.color == Color.yellow) &&
         // (Floor6Block3.GetComponent<Renderer>().material.color == Color.yellow) &&
@@ -81,18 +87,21 @@ public class ObjectTap61 : MonoBehaviour
             StartCoroutine("QuizStart6");
         }
     }
-    public void Countrandom()
+    public void Countrandom61()
     {
-        numrandom = Random.Range(1, 15);
+        numrandom = Random.Range(1, 8);
     }
     IEnumerator QuizStart6()
     {
         if (Quizload6)
         {
+            MovingPlayer6.SPEED = 0;
+            ani61.SetBool("Run", false);
+            ani61.SetBool("Wate", true);
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
-            joyController6.transform.position = new Vector2(1200, 120);
             missiontext5.alpha = 1;
             yield return new WaitForSeconds(2.0f);
+            joystick61.SetActive(false);
             textbox6.alpha = 1;
             canvas06.alpha = 1;
             canvas06.interactable = true;

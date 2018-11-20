@@ -5,69 +5,75 @@ using UnityEngine.UI;
 
 public class ObjectTap71 : MonoBehaviour
 {
-    private int ClickCount;
     public GameObject Floor7Block1, Floor7Block2, Floor7Block3, Floor7Block4;
     public GameObject Floor7Block5, Floor7Block6, Floor7Block7, Floor7Block8;
-    public GameObject PlayerPosision07,joyController7;
-    float num = 1.5f;
-    int numrandom;
-    public bool BlockActiv, Quizload;
-    float dis7;
+    public GameObject Aura71,MoveBlock71,joystickF7;
+    private int checknum7;
+    int numrandom7;
     public Text text;
-    public CanvasGroup canvas07,missiontext6,textbox7;
+    public CanvasGroup canvas07,missiontext7,textbox7;
     bool Quizload7 = true;
+    public MovingPlayer MovingPlayer7;
+    public Animator ani71;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        Aura71.SetActive(false);
+        checknum7 = 0;
     }
 
     // Update is called once per frame
-    public void OnClick()
+    void OnCollisionEnter(Collision col7)
     {
-        Countrandom();
-        ClickCount = numrandom;
-        if (ClickCount == 1 || ClickCount == 8 && BlockActiv)
+        Countrandom7();
+        if (numrandom7 != checknum7)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            checknum7 = numrandom7;
+            if (checknum7 == 1 && col7.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            }
+            else if (checknum7 == 2 && col7.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.green;
+            }
+            else if (checknum7 == 3 && col7.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+            }
+            else if (checknum7 == 4 && col7.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            }
+            else if (checknum7 == 5 && col7.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.grey;
+            }
+            else if (checknum7 == 6 && col7.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.cyan;
+            }
+            else if (checknum7 == 7 && col7.gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+            }
         }
-        else if (ClickCount == 2 || ClickCount == 9 && BlockActiv)
+        else if (numrandom7 == checknum7)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
+            Countrandom7();
         }
-        else if (ClickCount == 3 || ClickCount == 10 && BlockActiv)
+        if (this.gameObject.GetComponent<Renderer>().material.color == MoveBlock71.GetComponent<Renderer>().material.color)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
+            Aura71.SetActive(true);
         }
-        else if (ClickCount == 4 || ClickCount == 11 && BlockActiv)
+        else
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-        }
-        else if (ClickCount == 5 || ClickCount == 12 && BlockActiv)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.grey;
-        }
-        else if (ClickCount == 6 || ClickCount == 13 && BlockActiv)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-        }
-        else if (ClickCount == 7 || ClickCount == 14 && BlockActiv)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+            Aura71.SetActive(false);
         }
     }
     private void Update()
     {
-        dis7 = Vector3.Distance(this.gameObject.transform.position, PlayerPosision07.transform.position);
-        if (dis7 <= num)
-        {
-            BlockActiv = true;
-        }
-        else
-        {
-            BlockActiv = false;
-        }
         if ((Floor7Block1.GetComponent<Renderer>().material.color == Color.magenta))
         // (Floor7Block2.GetComponent<Renderer>().material.color == Color.magenta) &&
         // (Floor7Block3.GetComponent<Renderer>().material.color == Color.magenta) &&
@@ -80,17 +86,19 @@ public class ObjectTap71 : MonoBehaviour
             StartCoroutine("QuizStart7");
         }
     }
-    public void Countrandom()
+    public void Countrandom7()
     {
-        numrandom = Random.Range(1, 15);
+        numrandom7 = Random.Range(1, 8);
     }
     IEnumerator QuizStart7()
     {
         if (Quizload7)
         {
+            MovingPlayer7.SPEED = 0;
+            ani71.SetBool("Run", false);
+            ani71.SetBool("Wate", true);
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
-            joyController7.transform.position = new Vector2(1200, 120);
-            missiontext6.alpha = 1;
+            missiontext7.alpha = 1;
             yield return new WaitForSeconds(2.0f);
             textbox7.alpha = 1;
             canvas07.alpha = 1;

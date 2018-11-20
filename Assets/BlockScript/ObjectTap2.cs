@@ -5,10 +5,12 @@ using UnityEngine;
 public class ObjectTap2 : MonoBehaviour
 {
     int TouchNum2,checknum2;
+    public GameObject MoveBlock02,aura02;
 
     // Start is called before the first frame update
     void Start()
     {
+        aura02.SetActive(false);
         checknum2 = 0;
     }
     private void Update()
@@ -19,9 +21,9 @@ public class ObjectTap2 : MonoBehaviour
     // Update is called once per frame
     void OnCollisionEnter(Collision col02)
     {
+        Countrandom2();
         if (TouchNum2 != checknum2)
         {
-            Countrandom2();
             checknum2 = TouchNum2;
             if (checknum2 == 1 && col02.gameObject.tag == "Player")
             {
@@ -55,6 +57,14 @@ public class ObjectTap2 : MonoBehaviour
         else if (TouchNum2 == checknum2)
         {
             Countrandom2();
+        }
+        if (this.gameObject.GetComponent<Renderer>().material.color == MoveBlock02.GetComponent<Renderer>().material.color)
+        {
+            aura02.SetActive(true);
+        }
+        else
+        {
+            aura02.SetActive(false);
         }
     }
     public void Countrandom2()

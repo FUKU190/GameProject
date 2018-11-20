@@ -20,5 +20,7 @@ public class FollowPlayer : MonoBehaviour
     {
         // 自分自身の座標に、targetの座標に相対座標を足した値を設定する
         GetComponent<Transform>().position = target.position + offset;
+        //GetComponent<Transform>().position = target.position - transform.forward * 2.5f + transform.up * 2;
+        //GetComponent<Transform>().rotation = target.rotation;
     }
 }

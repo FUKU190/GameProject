@@ -10,7 +10,7 @@ public class MovingPlayer : MonoBehaviour
 
     Animator animator;
     //移動速度
-    public float SPEED;
+     public float SPEED = 0;
 
     private void Start()
     {
@@ -28,6 +28,7 @@ public class MovingPlayer : MonoBehaviour
         transform.position = pos;
         if(_joystick.Position.x != 0 && _joystick.Position.y != 0)
         {
+            SPEED = 0.08f;
             animator.SetBool("Run",true);
             animator.SetBool("Wate", false);
             var direction = new Vector3(_joystick.Position.x, 0, _joystick.Position.y);
@@ -35,8 +36,10 @@ public class MovingPlayer : MonoBehaviour
         }
         else if(_joystick.Position.x == 0 && _joystick.Position.y == 0) 
         {
+            SPEED = 0;
             animator.SetBool("Run", false);
             animator.SetBool("Wate", true);
         }
+        animator.SetBool("Wate", true);
     }
 }
