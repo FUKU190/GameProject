@@ -19,45 +19,42 @@ public class ObjectTap8 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void OnCollisionEnter(Collision col02)
+    void OnCollisionEnter(Collision col08)
     {
         Countrandom8();
         if (TouchNum8!= checknum8)
         {
             checknum8= TouchNum8;
-            if (checknum8 == 1 && col02.gameObject.tag == "Player")
+            if (checknum8 == 1 && col08.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.blue;
             }
-            else if (checknum8== 2 && col02.gameObject.tag == "Player")
+            else if (checknum8== 2 && col08.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.green;
             }
-            else if (checknum8 == 3 && col02.gameObject.tag == "Player")
+            else if (checknum8 == 3 && col08.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
             }
-            else if (checknum8== 4 && col02.gameObject.tag == "Player")
+            else if (checknum8== 4 && col08.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.yellow;
             }
-            else if (checknum8== 5 && col02.gameObject.tag == "Player")
+            else if (checknum8== 5 && col08.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.grey;
             }
-            else if (checknum8 == 6 && col02.gameObject.tag == "Player")
+            else if (checknum8 == 6 && col08.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.cyan;
             }
-            else if (checknum8 == 7 && col02.gameObject.tag == "Player")
+            else if (checknum8 == 7 && col08.gameObject.tag == "Player")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.magenta;
             }
         }
-        else if (TouchNum8 == checknum8)
-        {
-            Countrandom8();
-        }
+      
         if (this.gameObject.GetComponent<Renderer>().material.color == MoveBlock08.GetComponent<Renderer>().material.color)
         {
             aura08.SetActive(true);
@@ -66,7 +63,6 @@ public class ObjectTap8 : MonoBehaviour
         {
             aura08.SetActive(false);
         }
-
     }
     public void Countrandom8()
     {

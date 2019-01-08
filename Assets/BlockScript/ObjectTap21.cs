@@ -13,8 +13,6 @@ public class ObjectTap21 : MonoBehaviour
     bool Quizload = true;
     public Text text;
     public CanvasGroup canvas02, missiontext1, textbox2;
-    public Animator ani21;
-    public MovingPlayer MovingPlayer21;
 
     // Start is called before the first frame update
     void Start()
@@ -59,10 +57,6 @@ public class ObjectTap21 : MonoBehaviour
                 gameObject.GetComponent<Renderer>().material.color = Color.magenta;
             }
         }
-        else if (TouchCount21 == randomnum2)
-        {
-            Countrandom();
-        }
 
         if (gameObject.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color)
         {
@@ -81,14 +75,14 @@ public class ObjectTap21 : MonoBehaviour
 
     private void Update()
     {
-        if ((Floor2Block1.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) )
-        // (Floor2Block2.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
-        // (Floor2Block3.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
-        // (Floor2Block4.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
-        // (Floor2Block5.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
-        // (Floor2Block6.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
-        // (Floor2Block7.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
-        // (Floor2Block8.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color))
+        if ((Floor2Block1.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
+         (Floor2Block2.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
+         (Floor2Block3.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
+         (Floor2Block4.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
+         (Floor2Block5.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
+         (Floor2Block6.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
+         (Floor2Block7.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color) &&
+         (Floor2Block8.GetComponent<Renderer>().material.color == MoveBlock21.GetComponent<Renderer>().material.color))
         {
             StartCoroutine("QuizStart2");
         }
@@ -98,9 +92,7 @@ public class ObjectTap21 : MonoBehaviour
     {
         if (Quizload)
         {
-            MovingPlayer21.SPEED = 0;
-            ani21.SetBool("Run", false);
-            ani21.SetBool("Wate", true);
+            GameObject.Find("QuizObject").GetComponent<Quiz>().AnimationStop();
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
             missiontext1.alpha = 1;
             yield return new WaitForSeconds(2.0f);
@@ -108,7 +100,7 @@ public class ObjectTap21 : MonoBehaviour
             textbox2.alpha = 1;
             canvas02.alpha = 1;
             canvas02.interactable = true;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().Nolmacount = 20;
+
             GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
             Quizload = false;
         }

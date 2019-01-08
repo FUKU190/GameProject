@@ -14,8 +14,6 @@ public class ObjectTap41 : MonoBehaviour
     public Text text;
     public CanvasGroup canvas03,missiontext3,textbox4;
     bool Quizload4 = true;
-    public Animator ani41;
-    public MovingPlayer MovingPlayer4;
 
     // Start is called before the first frame update
     void Start()
@@ -72,14 +70,14 @@ public class ObjectTap41 : MonoBehaviour
     private void Update()
     {
 
-        if ((Floor4Block1.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color))
-        // (Floor4Block2.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
-        // (Floor4Block3.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
-        // (Floor4Block4.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
-        // (Floor4Block5.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
-        // (Floor4Block6.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
-        // (Floor4Block7.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
-        // (Floor4Block8.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color))
+        if ((Floor4Block1.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
+         (Floor4Block2.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
+         (Floor4Block3.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
+         (Floor4Block4.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
+         (Floor4Block5.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
+         (Floor4Block6.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
+         (Floor4Block7.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color) &&
+         (Floor4Block8.GetComponent<Renderer>().material.color == MoveBlock41.GetComponent<Renderer>().material.color))
         {
             StartCoroutine("QuizStart4");
         }
@@ -92,9 +90,7 @@ public class ObjectTap41 : MonoBehaviour
     {
         if (Quizload4)
         {
-            MovingPlayer4.SPEED = 0;
-            ani41.SetBool("Run", false);
-            ani41.SetBool("Wate", true);
+            GameObject.Find("QuizObject").GetComponent<Quiz>().AnimationStop();
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
             missiontext3.alpha = 1;
             yield return new WaitForSeconds(2.0f);
@@ -102,7 +98,7 @@ public class ObjectTap41 : MonoBehaviour
             textbox4.alpha = 1;
             canvas03.alpha = 1;
             canvas03.interactable = true;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().Nolmacount = 40;
+
             GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
             Quizload4 = false;
         }

@@ -54,10 +54,7 @@ public class ObjectTap5 : MonoBehaviour
                 gameObject.GetComponent<Renderer>().material.color = Color.magenta;
             }
         }
-        else if (checknum5 == TouchNum5)
-        {
-            Countrandom5();
-        }
+       
         if (this.gameObject.GetComponent<Renderer>().material.color == MoveBlock05.GetComponent<Renderer>().material.color)
         {
             Aura05.SetActive(true);

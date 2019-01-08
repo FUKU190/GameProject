@@ -10,7 +10,7 @@ public class TimeController : MonoBehaviour
     string min, sec;
     public GameObject joystick;
     public CanvasGroup Offcanvas;
-    
+    public GameObject _joystick;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,7 @@ public class TimeController : MonoBehaviour
         if(Timer <= 0)
         {
             timetext.text = "0:00";
-            joystick.transform.position = new Vector2(1200, 120);
+            _joystick.SetActive(false);
             Offcanvas.alpha = 0;
             Offcanvas.interactable = false;
             conditionstext.text = "TIME OVER";

@@ -54,10 +54,7 @@ public class ObjectTap7 : MonoBehaviour
                 gameObject.GetComponent<Renderer>().material.color = Color.magenta;
             }
         }
-        else if (TouchNum7 == checknum7)
-        {
-            Countrandom2();
-        }
+      
         if (gameObject.GetComponent<Renderer>().material.color == MoveBlock07.GetComponent<Renderer>().material.color)
         {
             aura07.SetActive(true);

@@ -13,8 +13,6 @@ public class ObjectTap51 : MonoBehaviour
     public Text text;
     public CanvasGroup canvas05,missiontext4,textbox5;
     bool Quizload5 = true;
-    public Animator ani51;
-    public MovingPlayer MovingPlayer5;
 
     // Start is called before the first frame update
     void Start()
@@ -58,11 +56,7 @@ public class ObjectTap51 : MonoBehaviour
                 gameObject.GetComponent<Renderer>().material.color = Color.magenta;
             }
         }
-        else if (numrandom5 == checknum5)
-        {
-            Countrandom5();
-        }
-
+        
         if(gameObject.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color)
         {
             Aura51.SetActive(true);
@@ -74,14 +68,14 @@ public class ObjectTap51 : MonoBehaviour
     }
     private void Update()
     {
-        if ((Floor5Block1.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color))
-        // (Floor5Block2.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
-        // (Floor5lock3.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
-        // (Floor5Block4.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
-        // (Floor5Block5.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
-        // (Floor5Block6.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
-        // (Floor5Block7.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
-        // (Floor5Block8.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color))
+        if ((Floor5Block1.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color)&&
+         (Floor5Block2.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+         (Floor5lock3.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+         (Floor5Block4.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+         (Floor5Block5.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+         (Floor5Block6.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+         (Floor5Block7.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color) &&
+         (Floor5Block8.GetComponent<Renderer>().material.color == MoveBlock51.GetComponent<Renderer>().material.color))
         {
             StartCoroutine("QuizStart5");
         }
@@ -95,9 +89,7 @@ public class ObjectTap51 : MonoBehaviour
     {
         if (Quizload5)
         {
-            MovingPlayer5.SPEED = 0;
-            ani51.SetBool("Run", false);
-            ani51.SetBool("Wate", true);
+            GameObject.Find("QuizObject").GetComponent<Quiz>().AnimationStop();
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
             missiontext4.alpha = 1;
             yield return new WaitForSeconds(2.0f);
@@ -105,7 +97,7 @@ public class ObjectTap51 : MonoBehaviour
             textbox5.alpha = 1;
             canvas05.alpha = 1;
             canvas05.interactable = true;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().Nolmacount = 50;
+
             GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
             Quizload5 = false;
         }

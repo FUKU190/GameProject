@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MoveBlock : MonoBehaviour
 {
@@ -9,9 +10,14 @@ public class MoveBlock : MonoBehaviour
     public float posision;
     Vector3 force;
     public GameObject player;
+    public Text missionQuiz3;
+    public CanvasGroup QuizCanvas;
+    bool Up = true;
+    public int Nolma;
 
     void Start()
     {
+        Nolma = 4;
         upspeed = 0;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
@@ -30,53 +36,33 @@ public class MoveBlock : MonoBehaviour
         {
             upspeed = 2.5f;
         }
-        if(this.gameObject.transform.position.y >= 160)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.white;
-        }
-        if (this.gameObject.transform.position.y >= 140)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.magenta;
-        }
-        else if (this.gameObject.transform.position.y >= 120)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-        }
-        else if (this.gameObject.transform.position.y >= 100)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-        }
-        else if (this.gameObject.transform.position.y >= 80)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.grey;
-        }
-        else if (this.gameObject.transform.position.y >= 60)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
-        }
-        else if (this.gameObject.transform.position.y >= 40)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
-        }
-        else if (this.gameObject.transform.position.y >= 20)
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
-        }
     }
     
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" && GameObject.Find("QuizObject").GetComponent<Quiz>().Crrent == Nolma)
         {
-            StartCoroutine("UpFloor");
+            missionQuiz3.text = "3問連続正解せよ！";
+            StartCoroutine("QuizConbo");
         }
     }
 
-    IEnumerator UpFloor()
+    IEnumerator QuizCombo()
+    {
+        yield return new WaitForSeconds(2.0f);
+        GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
+        QuizCanvas.alpha = 1;
+        QuizCanvas.interactable = true;
+
+    }
+    public void UpFloor()
+    {
+        if (Up)
         {
-            yield return new WaitForSeconds(0.5f);
+            Nolma += 4;
             rb.isKinematic = false;
             upspeed = 4;
-            yield return null;
+            Up = false;
+        }
         }
     }

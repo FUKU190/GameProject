@@ -54,10 +54,7 @@ public class ObjectTap3 : MonoBehaviour
                 gameObject.GetComponent<Renderer>().material.color = Color.magenta;
             }
         }
-        else if (TouchNum3 == checknum3)
-        {
-            Countrandom2();
-        }
+       
         if (this.gameObject.GetComponent<Renderer>().material.color == MoveBlock03.GetComponent<Renderer>().material.color)
         {
             aura03.SetActive(true);

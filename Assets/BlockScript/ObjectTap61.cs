@@ -5,17 +5,13 @@ using UnityEngine.UI;
 
 public class ObjectTap61 : MonoBehaviour
 {
-    private int TouchNum61;
+    private int TouchNum61, numrandom;
     public GameObject Floor6Block1, Floor6Block2, Floor6Block3, Floor6Block4;
     public GameObject Floor6Block5, Floor6Block6, Floor6Block7, Floor6Block8;
     public GameObject joystick61,MoveBlock61,Aura61;
-    int numrandom;
-    public bool BlockActiv, Quizload;
     public Text text;
     public CanvasGroup canvas06,missiontext5,textbox6;
     bool Quizload6 = true;
-    public MovingPlayer MovingPlayer6;
-    public Animator ani61;
 
     // Start is called before the first frame update
     void Start()
@@ -60,10 +56,7 @@ public class ObjectTap61 : MonoBehaviour
                 gameObject.GetComponent<Renderer>().material.color = Color.magenta;
             }
         }
-        else if (TouchNum61 == numrandom)
-        {
-            Countrandom61();
-        }
+  
         if (this.gameObject.GetComponent<Renderer>().material.color == MoveBlock61.GetComponent<Renderer>().material.color)
         {
             Aura61.SetActive(true);
@@ -75,14 +68,14 @@ public class ObjectTap61 : MonoBehaviour
     }
     private void Update()
     {
-        if ((Floor6Block1.GetComponent<Renderer>().material.color == Color.yellow))
-        // (Floor6Block2.GetComponent<Renderer>().material.color == Color.yellow) &&
-        // (Floor6Block3.GetComponent<Renderer>().material.color == Color.yellow) &&
-        // (Floor6Block4.GetComponent<Renderer>().material.color == Color.yellow) &&
-        // (Floor6Block5.GetComponent<Renderer>().material.color == Color.yellow) &&
-        // (Floor6Block6.GetComponent<Renderer>().material.color == Color.yellow) &&
-        // (Floor6Block7.GetComponent<Renderer>().material.color == Color.yellow) &&
-        // (Floor6Block8.GetComponent<Renderer>().material.color == Color.yellow))
+        if ((Floor6Block1.GetComponent<Renderer>().material.color == MoveBlock61.GetComponent<Renderer>().material.color) &&
+         (Floor6Block2.GetComponent<Renderer>().material.color == MoveBlock61.GetComponent<Renderer>().material.color) &&
+         (Floor6Block3.GetComponent<Renderer>().material.color == MoveBlock61.GetComponent<Renderer>().material.color) &&
+         (Floor6Block4.GetComponent<Renderer>().material.color == MoveBlock61.GetComponent<Renderer>().material.color) &&
+         (Floor6Block5.GetComponent<Renderer>().material.color == MoveBlock61.GetComponent<Renderer>().material.color) &&
+         (Floor6Block6.GetComponent<Renderer>().material.color == MoveBlock61.GetComponent<Renderer>().material.color) &&
+         (Floor6Block7.GetComponent<Renderer>().material.color == MoveBlock61.GetComponent<Renderer>().material.color) &&
+         (Floor6Block8.GetComponent<Renderer>().material.color == MoveBlock61.GetComponent<Renderer>().material.color))
         {
             StartCoroutine("QuizStart6");
         }
@@ -95,9 +88,7 @@ public class ObjectTap61 : MonoBehaviour
     {
         if (Quizload6)
         {
-            MovingPlayer6.SPEED = 0;
-            ani61.SetBool("Run", false);
-            ani61.SetBool("Wate", true);
+            GameObject.Find("QuizObject").GetComponent<Quiz>().AnimationStop();
             GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
             missiontext5.alpha = 1;
             yield return new WaitForSeconds(2.0f);
@@ -105,7 +96,6 @@ public class ObjectTap61 : MonoBehaviour
             textbox6.alpha = 1;
             canvas06.alpha = 1;
             canvas06.interactable = true;
-            GameObject.Find("QuizObject").GetComponent<Quiz>().Nolmacount = 60;
             GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
             Quizload6 = false;
         }

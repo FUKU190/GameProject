@@ -9,6 +9,7 @@ public class FinishGame : MonoBehaviour
     public Text Goaltext;
     public MovingPlayer Moving0;
     float Time;
+    public Animator ani0;
     
     // Start is called before the first frame update
     void Start()
@@ -21,10 +22,11 @@ public class FinishGame : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider hit)
     {
-        if(other.gameObject.tag == "Player")
+        if(hit.CompareTag("Player"))
         {
+            ani0.SetBool("Run", false);
             Moving0.SPEED = 0;
             joyStick.SetActive(false);
             Time = GameObject.Find("TimeObject").GetComponent<TimeController>().Timer;

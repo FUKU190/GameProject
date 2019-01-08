@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class MovingPlayer : MonoBehaviour
 {
@@ -38,7 +35,6 @@ public class MovingPlayer : MonoBehaviour
         {
             SPEED = 0;
             animator.SetBool("Run", false);
-            animator.SetBool("Wate", true);
         }
         animator.SetBool("Wate", true);
     }

@@ -5,17 +5,15 @@ using UnityEngine.UI;
 
 public class Quiz : MonoBehaviour
 {
-    private string[] sentences;                        // 文章を格納するリスト
-    public List<string[]> csvData = new List<string[]>();
+    public List<string[]> csvData = new List<string[]>();　　　// 文章を格納するリスト
     public TextAsset CSVfile;
     public Text uiText, Select1, Select2, Select3, Select4, count; //問題と、選択肢のテキスト
     [SerializeField]
     [Range(0.001f, 0.3f)]
     float IntervalForCharDisplay;                      // 1文字の表示にかける時間
-    int RandomNum = 0;
-    public int ClearCount = 0;
-    public int Count, Nolmacount;
-    string Ans;                                        //答え合わせ用の文字列を格納する変数
+    int RandomNum = 0;                                 //問題をランダムに抽出するための変数
+    public int Count,miss,Crrent;
+    private string Ans;                                        //答え合わせ用の文字列を格納する変数
     private int currentSentenceNum = 0;                //現在表示している文章番号
     protected string currentSentence = string.Empty;   // 現在の文字列
     private float timeUntilDisplay = 0;                // 表示にかかる時間
@@ -25,13 +23,14 @@ public class Quiz : MonoBehaviour
     public MovingPlayer MovingPlayer;
     public CanvasGroup canvas, QuizText,mission,textbox;
     public Animator ani;
-    Vector2 joypos;
     public GameObject JoyStick;
     public bool posisionUp = false;
+    public AudioClip Audio1, Audio2;
+    public AudioSource Speker;
+    public MoveBlock moveBlock;
 
     void Start()
     {
-        Nolmacount = 10;
         Count = 0;
         QuizLoad();
     }
@@ -50,31 +49,34 @@ public class Quiz : MonoBehaviour
 
     void Update()
     {
-        if (Count == Nolmacount)
+        if (Crrent == 3)
         {
             EndQuiz();
         }
-        //表示される文字数を計算
-        else
+        else if (Crrent < moveBlock.Nolma)
         {
-            MovingPlayer.SPEED = 0;
-            ani.SetBool("Run", false);
-            int displayCharCount = (int)(Mathf.Clamp01((Time.time - timeBeganDisplay) / timeUntilDisplay) * currentSentence.Length);
-            //表示される文字数が表示している文字数と違う
-            if (displayCharCount != lastUpdateCharCount)
-            {
-                uiText.text = currentSentence.Substring(0, displayCharCount);
-                //表示している文字数の更新
-                lastUpdateCharCount = displayCharCount;
-            }
+            EndQuiz();
         }
+        
+
+        //表示される文字数
+        MovingPlayer.SPEED = 0;
+        ani.SetBool("Run", false);
+        int displayCharCount = (int)(Mathf.Clamp01((Time.time - timeBeganDisplay) / timeUntilDisplay) * currentSentence.Length);
+        //表示される文字数が表示している文字数と違う
+        if (displayCharCount != lastUpdateCharCount)
+        {
+            uiText.text = currentSentence.Substring(0, displayCharCount);
+            //表示している文字数の更新
+            lastUpdateCharCount = displayCharCount;
+        }
+        
     }
     // 次の文章をセットする
     public void SetNextSentence()
     {
-
         //リストからランダムで1問取る
-        RandomNum = Random.Range(1, 99);
+        RandomNum = Random.Range(1, 134);
         Ans = csvData[RandomNum][1];
         currentSentence = csvData[RandomNum][0];
         Select1.text = csvData[RandomNum][2];
@@ -92,12 +94,18 @@ public class Quiz : MonoBehaviour
     {
         if (Ans == Select1.text)
         {
+            Speker.clip = Audio1;
+            Speker.Play();
             Count++;
-            count.text = "正解数：" + (Count % 10);
+            Crrent++;
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select1.text)
         {
+            Speker.clip = Audio2;
+            Speker.Play();
+            Count++;
+            miss++;
             StartCoroutine("NextQuiz");
         }
     }
@@ -105,12 +113,18 @@ public class Quiz : MonoBehaviour
     {
         if (Ans == Select2.text)
         {
+            Speker.clip = Audio1;
+            Speker.Play();
             Count++;
-            count.text = "正解数：" + (Count % 10);
+            Crrent++;
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select2.text)
         {
+            Speker.clip = Audio2;
+            Speker.Play();
+            Count++;
+            miss++;
             StartCoroutine("NextQuiz");
         }
     }
@@ -118,12 +132,18 @@ public class Quiz : MonoBehaviour
     {
         if (Ans == Select3.text)
         {
+            Speker.clip = Audio1;
+            Speker.Play();
             Count++;
-            count.text = "正解数：" + (Count % 10);
+            Crrent++;
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select3.text)
         {
+            Speker.clip = Audio2;
+            Speker.Play();
+            Count++;
+            miss++;
             StartCoroutine("NextQuiz");
         }
     }
@@ -131,12 +151,18 @@ public class Quiz : MonoBehaviour
     {
         if (Ans == Select4.text)
         {
+            Speker.clip = Audio1;
+            Speker.Play();
             Count++;
-            count.text = "正解数：" + (Count % 10);
+            Crrent++;
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select4.text)
         {
+            Speker.clip = Audio2;
+            Speker.Play();
+            Count++;
+            miss++;
             StartCoroutine("NextQuiz");
         }
     }
@@ -150,32 +176,25 @@ public class Quiz : MonoBehaviour
     {
         if (posisionUp == false)
         {
-            ClearCount++;
-            if (ClearCount <= 6)
-            {
-                JoyStick.SetActive(true);
-                //Debug.Log("IN");
-                textbox.alpha = 0;
-                ani.SetBool("Run", false);
-                GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
-                MoveBlock.posision += 20;
-                mission.alpha = 0;
-                posisionUp = true;
-            }
-            else if(ClearCount == 7)
-            {
-                JoyStick.SetActive(true);
-                textbox.alpha = 0;
-                GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
-                MoveBlock.posision += 30;
-                mission.alpha = 0;
-                posisionUp = true;
-            }
+            JoyStick.SetActive(true);
+            textbox.alpha = 0;
+            ani.SetBool("Run", false);
+           //GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
+            //MoveBlock.posision += 20;
+            mission.alpha = 0;
+            Count = 0;
+            posisionUp = true;
+            
         }
         else if(posisionUp)
         {
             canvas.alpha = 0;
             canvas.interactable = false;
         }
+    }
+    public void AnimationStop()
+    {
+        ani.SetBool("Run", false);
+        MovingPlayer.SPEED = 0;
     }
 }
