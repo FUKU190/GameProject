@@ -21,7 +21,7 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Timer -= Time.deltaTime;
+        Timer += Time.deltaTime;
         int minute = (int)Timer / 60;
         int second = (int)Timer % 60;
         min = minute.ToString();
@@ -34,11 +34,9 @@ public class TimeController : MonoBehaviour
 
         if(Timer <= 0)
         {
-            timetext.text = "0:00";
             _joystick.SetActive(false);
             Offcanvas.alpha = 0;
             Offcanvas.interactable = false;
-            conditionstext.text = "TIME OVER";
         }
     }
 }

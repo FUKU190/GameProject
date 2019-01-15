@@ -23,7 +23,7 @@ public class FedeOut : MonoBehaviour
     {
         while (b < 3.5f)
         {
-            Panel.GetComponent<Image>().color += new Color(0, 0, 0, -0.005f);
+            Panel.GetComponent<Image>().color += new Color(0, 0, 0, -0.010f);
             b += 0.01f;
             yield return null;
         }

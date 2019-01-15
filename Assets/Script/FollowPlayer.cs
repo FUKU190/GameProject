@@ -6,13 +6,10 @@ using UnityEngine.UI;
 public class FollowPlayer : MonoBehaviour
 {
 
-    public Transform target;    // ターゲットへの参照
-    private Vector3 offset;     // 相対座
-    int Click;
-    [SerializeField]
-    private GameObject maincamera;
-    [SerializeField]
-    private GameObject otherCamera;
+    public Transform target; // ターゲットへの参照
+    public Transform mainCamera;
+    public Vector3 offset;     // 相対座
+    public bool flag = true;
 
 
     void Start()
@@ -26,28 +23,5 @@ public class FollowPlayer : MonoBehaviour
     {
         // 自分自身の座標に、targetの座標に相対座標を足した値を設定する
         GetComponent<Transform>().position = target.position + offset;
-        //GetComponent<Transform>().position = target.position - transform.forward * 2.5f + transform.up * 2;
-        //GetComponent<Transform>().rotation = target.rotation;
-    }
-    public void OnClick()
-    {
-        if(Click == 0)
-        {
-            Click = 1;
-        }
-        else if(Click == 1)
-        {
-            Click = 0;
-        }
-        if (Click == 1)
-        {
-            maincamera.SetActive(false);
-            otherCamera.SetActive(true);
-        }
-        else if(Click == 0)
-        {
-            maincamera.SetActive(true);
-            otherCamera.SetActive(false);
-        }
     }
 }

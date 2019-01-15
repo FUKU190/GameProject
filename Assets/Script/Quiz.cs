@@ -12,7 +12,7 @@ public class Quiz : MonoBehaviour
     [Range(0.001f, 0.3f)]
     float IntervalForCharDisplay;                      // 1文字の表示にかける時間
     int RandomNum = 0;                                 //問題をランダムに抽出するための変数
-    public int Count,miss,Crrent;
+    public int Count,miss,ClearCount;
     private string Ans;                                        //答え合わせ用の文字列を格納する変数
     private int currentSentenceNum = 0;                //現在表示している文章番号
     protected string currentSentence = string.Empty;   // 現在の文字列
@@ -24,15 +24,15 @@ public class Quiz : MonoBehaviour
     public CanvasGroup canvas, QuizText,mission,textbox;
     public Animator ani;
     public GameObject JoyStick;
-    public bool posisionUp = false;
+    public bool posisionUp = true;
+    public bool POS0 = true;
     public AudioClip Audio1, Audio2;
     public AudioSource Speker;
-    public MoveBlock moveBlock;
 
     void Start()
     {
         Count = 0;
-        QuizLoad();
+        canvas.alpha = 0;
     }
 
     public void QuizLoad()
@@ -49,28 +49,25 @@ public class Quiz : MonoBehaviour
 
     void Update()
     {
-        if (Crrent == 3)
+        if (Count == 3)
         {
-            EndQuiz();
+            if (POS0)
+            {
+                POS0 = false;
+                EndQuiz();
+            }
         }
-        else if (Crrent < moveBlock.Nolma)
+        else
         {
-            EndQuiz();
+            int displayCharCount = (int)(Mathf.Clamp01((Time.time - timeBeganDisplay) / timeUntilDisplay) * currentSentence.Length);
+            //表示される文字数が表示している文字数と違う
+            if (displayCharCount != lastUpdateCharCount)
+            {
+                uiText.text = currentSentence.Substring(0, displayCharCount);
+                //表示している文字数の更新
+                lastUpdateCharCount = displayCharCount;
+            }
         }
-        
-
-        //表示される文字数
-        MovingPlayer.SPEED = 0;
-        ani.SetBool("Run", false);
-        int displayCharCount = (int)(Mathf.Clamp01((Time.time - timeBeganDisplay) / timeUntilDisplay) * currentSentence.Length);
-        //表示される文字数が表示している文字数と違う
-        if (displayCharCount != lastUpdateCharCount)
-        {
-            uiText.text = currentSentence.Substring(0, displayCharCount);
-            //表示している文字数の更新
-            lastUpdateCharCount = displayCharCount;
-        }
-        
     }
     // 次の文章をセットする
     public void SetNextSentence()
@@ -97,14 +94,19 @@ public class Quiz : MonoBehaviour
             Speker.clip = Audio1;
             Speker.Play();
             Count++;
-            Crrent++;
+            if (Count == 3)
+            {
+                ClearCount++;
+                POS0 = true;
+                posisionUp = true;
+            }
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select1.text)
         {
             Speker.clip = Audio2;
             Speker.Play();
-            Count++;
+            Count = 0;
             miss++;
             StartCoroutine("NextQuiz");
         }
@@ -116,14 +118,19 @@ public class Quiz : MonoBehaviour
             Speker.clip = Audio1;
             Speker.Play();
             Count++;
-            Crrent++;
+            if (Count == 3)
+            {
+                ClearCount++;
+                POS0 = true;
+                posisionUp = true;
+            }
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select2.text)
         {
             Speker.clip = Audio2;
             Speker.Play();
-            Count++;
+            Count = 0;
             miss++;
             StartCoroutine("NextQuiz");
         }
@@ -135,14 +142,19 @@ public class Quiz : MonoBehaviour
             Speker.clip = Audio1;
             Speker.Play();
             Count++;
-            Crrent++;
+            if(Count == 3)
+            {
+                ClearCount++;
+                POS0 = true;
+                posisionUp = true;
+            }
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select3.text)
         {
             Speker.clip = Audio2;
             Speker.Play();
-            Count++;
+            Count = 0;
             miss++;
             StartCoroutine("NextQuiz");
         }
@@ -154,14 +166,19 @@ public class Quiz : MonoBehaviour
             Speker.clip = Audio1;
             Speker.Play();
             Count++;
-            Crrent++;
+            if (Count == 3)
+            {
+                ClearCount++;
+                POS0 = true;
+                posisionUp = true;
+            }
             StartCoroutine("NextQuiz");
         }
         else if (Ans != Select4.text)
         {
             Speker.clip = Audio2;
             Speker.Play();
-            Count++;
+            Count = 0;
             miss++;
             StartCoroutine("NextQuiz");
         }
@@ -174,26 +191,28 @@ public class Quiz : MonoBehaviour
     }
     public void EndQuiz()
     {
-        if (posisionUp == false)
+        if (posisionUp == true)
         {
             JoyStick.SetActive(true);
-            textbox.alpha = 0;
-            ani.SetBool("Run", false);
-           //GameObject.Find("Floor1Blocks").GetComponent<ObjectOllClrear>().ClearColor();
-            //MoveBlock.posision += 20;
-            mission.alpha = 0;
-            Count = 0;
-            posisionUp = true;
-            
-        }
-        else if(posisionUp)
-        {
             canvas.alpha = 0;
             canvas.interactable = false;
+            textbox.alpha = 0;
+            posisionUp = false;
+            MoveBlock.posision += 20;
+            StartCoroutine("FloorMove");
         }
     }
+
+    IEnumerator FloorMove()
+    {
+        yield return new WaitForSeconds(0.5f);
+        yield return null;
+        MoveBlock.UpFloor();
+    }
+
     public void AnimationStop()
     {
+        ani.SetBool("Wate", true);
         ani.SetBool("Run", false);
         MovingPlayer.SPEED = 0;
     }

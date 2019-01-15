@@ -9,15 +9,15 @@ public class MoveBlock : MonoBehaviour
     public float upspeed;
     public float posision;
     Vector3 force;
-    public GameObject player;
+    public GameObject player, quizUI,Controller;
     public Text missionQuiz3;
-    public CanvasGroup QuizCanvas;
-    bool Up = true;
-    public int Nolma;
+    public CanvasGroup QuizCanvas,Panel,missonText;
+    public bool Up = true;
+    public int Nolma,PanelNum;
 
     void Start()
     {
-        Nolma = 4;
+        Nolma = 0;
         upspeed = 0;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
@@ -29,40 +29,53 @@ public class MoveBlock : MonoBehaviour
 
         if (this.gameObject.transform.position.y > posision)
         {
+            GameObject.Find("QuizObject").GetComponent<Quiz>().posisionUp = false;
             upspeed = 0;
             rb.isKinematic = true;
         }
-        else if(this.gameObject.transform.position.y > posision - 3)
+        else if (this.gameObject.transform.position.y > posision - 3)
         {
             upspeed = 2.5f;
         }
     }
-    
+
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Player" && GameObject.Find("QuizObject").GetComponent<Quiz>().Crrent == Nolma)
+        if (col.gameObject.tag == "Player" && Nolma == PanelNum)
         {
-            missionQuiz3.text = "3問連続正解せよ！";
-            StartCoroutine("QuizConbo");
+            missionQuiz3.text = "  3問連続正解せよ！";
+            StartCoroutine("QuizCombo");
         }
+        else if(this.gameObject.transform.position.y > posision && Nolma != PanelNum)
+        {
+            missonText.alpha = 1;
+            missionQuiz3.text = "有効パネルが不足しています。パネルを点灯させてください";
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        missonText.alpha = 0;
     }
 
     IEnumerator QuizCombo()
     {
-        yield return new WaitForSeconds(2.0f);
-        GameObject.Find("QuizObject").GetComponent<Quiz>().SetNextSentence();
+        yield return new WaitForSeconds(1.5f);
+        GameObject.Find("QuizObject").GetComponent<Quiz>().QuizLoad();
         QuizCanvas.alpha = 1;
+        Panel.alpha = 1;
         QuizCanvas.interactable = true;
+        Controller.SetActive(false);
 
     }
     public void UpFloor()
     {
-        if (Up)
+        Nolma += 7;
+        rb.isKinematic = false;
+        upspeed = 4;
+        GameObject.Find("QuizObject").GetComponent<Quiz>().Count = 0;
+        if (GameObject.Find("QuizObject").GetComponent<Quiz>().ClearCount == 7)
         {
-            Nolma += 4;
-            rb.isKinematic = false;
-            upspeed = 4;
-            Up = false;
-        }
+            Destroy(quizUI);
         }
     }
+}

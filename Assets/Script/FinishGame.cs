@@ -5,16 +5,17 @@ using UnityEngine.UI;
 
 public class FinishGame : MonoBehaviour
 {
-    public GameObject joyStick;
+    public GameObject joyStick,ResultPanel;
     public Text Goaltext;
     public MovingPlayer Moving0;
     float Time;
     public Animator ani0;
+    public Quiz quiz;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        ResultPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,11 +27,12 @@ public class FinishGame : MonoBehaviour
     {
         if(hit.CompareTag("Player"))
         {
+            ResultPanel.SetActive(true);
             ani0.SetBool("Run", false);
             Moving0.SPEED = 0;
             joyStick.SetActive(false);
             Time = GameObject.Find("TimeObject").GetComponent<TimeController>().Timer;
-            PlayerPrefs.SetFloat("TimeScore", Time);
+            PlayerPrefs.SetFloat("TimeScore", Time + quiz.miss);
             PlayerPrefs.Save();
             Debug.Log(PlayerPrefs.GetFloat("TimeScore"));
         }

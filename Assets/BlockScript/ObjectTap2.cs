@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ObjectTap2 : MonoBehaviour
 {
-    int TouchNum2,checknum2;
-    public GameObject MoveBlock02,aura02;
+    public GameObject aura02;
+    public MoveBlock Move02;
 
     // Start is called before the first frame update
     void Start()
     {
         aura02.SetActive(false);
-        checknum2 = 0;
     }
     private void Update()
     {
@@ -21,11 +20,11 @@ public class ObjectTap2 : MonoBehaviour
     // Update is called once per frame
     void OnCollisionEnter(Collision col02)
     {
-       
-        if (this.gameObject.GetComponent<Renderer>().material.color == MoveBlock02.GetComponent<Renderer>().material.color)
+        if (col02.gameObject.tag == "Player")
         {
+            Move02.PanelNum++;
             aura02.SetActive(true);
-        }
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
+        } 
     }
-
 }

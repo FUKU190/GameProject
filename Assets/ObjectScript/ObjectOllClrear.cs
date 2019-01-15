@@ -25,7 +25,7 @@ public class ObjectOllClrear : MonoBehaviour
     }
     public void ClearColor()
     {
-        if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count >= 70)
+        if (GameObject.Find("QuizObject").GetComponent<Quiz>().Count  == 1)
         {
             Floor7Block1.GetComponent<Renderer>().material.color = Color.black;
             Floor7Block2.GetComponent<Renderer>().material.color = Color.black;
