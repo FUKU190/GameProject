@@ -17,7 +17,7 @@ public class Fade : MonoBehaviour
 
     public void OnClick()
     {
-            StartCoroutine("LoadSce");
+        StartCoroutine("LoadSce");
     }
 
     IEnumerator LoadSce()

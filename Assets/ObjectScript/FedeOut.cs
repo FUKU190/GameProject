@@ -14,11 +14,6 @@ public class FedeOut : MonoBehaviour
         StartCoroutine("Fadeout");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     IEnumerator Fadeout()
     {
         while (b < 3.5f)

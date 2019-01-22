@@ -11,18 +11,16 @@ public class FinishGame : MonoBehaviour
     float Time;
     public Animator ani0;
     public Quiz quiz;
+    public float[] ranking = new float[10];
+    int i;
     
     // Start is called before the first frame update
     void Start()
     {
         ResultPanel.SetActive(false);
+        i = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter(Collider hit)
     {
         if(hit.CompareTag("Player"))
@@ -31,8 +29,9 @@ public class FinishGame : MonoBehaviour
             ani0.SetBool("Run", false);
             Moving0.SPEED = 0;
             joyStick.SetActive(false);
-            Time = GameObject.Find("TimeObject").GetComponent<TimeController>().Timer;
-            PlayerPrefs.SetFloat("TimeScore", Time + quiz.miss);
+            Time = GameObject.Find("TimeObject").GetComponent<TimeController>().Timer + quiz.miss;
+            ranking[i] = Time;
+            PlayerPrefs.SetFloat("TimeScore", ranking[i]);
             PlayerPrefs.Save();
             Debug.Log(PlayerPrefs.GetFloat("TimeScore"));
         }

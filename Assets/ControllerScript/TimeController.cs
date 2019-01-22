@@ -12,12 +12,6 @@ public class TimeController : MonoBehaviour
     public CanvasGroup Offcanvas;
     public GameObject _joystick;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -31,12 +25,5 @@ public class TimeController : MonoBehaviour
             sec = "0" + sec;
         }
         timetext.text = min + ":" + sec;
-
-        if(Timer <= 0)
-        {
-            _joystick.SetActive(false);
-            Offcanvas.alpha = 0;
-            Offcanvas.interactable = false;
-        }
     }
 }

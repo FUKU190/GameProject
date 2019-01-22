@@ -7,7 +7,7 @@ public class MovingPlayer : MonoBehaviour
 
     Animator animator;
     //移動速度
-     public float SPEED = 0;
+    public float SPEED = 0;
 
     private void Start()
     {
@@ -30,7 +30,11 @@ public class MovingPlayer : MonoBehaviour
             animator.SetBool("Wate", false);
             var direction = new Vector3(_joystick.Position.x, 0, _joystick.Position.y);
             transform.localRotation = Quaternion.LookRotation(direction);
-        }
+            if (_joystick.Position.x >= 2 && _joystick.Position.y >= 2)
+            {
+                SPEED = 0.2f;
+            }
+            }
         else if(_joystick.Position.x == 0 && _joystick.Position.y == 0) 
         {
             SPEED = 0;

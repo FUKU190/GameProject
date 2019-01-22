@@ -15,7 +15,6 @@ IEndDragHandler,
 IDragHandler
 
 {
-    public Camera Subcamera;
 
     //タップ中
     private bool _isPressing = false;
@@ -198,9 +197,6 @@ IDragHandler
         );
 
         //ワールド座標に変換
-        Vector3 tapWorldPoint0 = Subcamera.ScreenToWorldPoint(
-          new Vector3(screenPos.x, screenPos.y, -Subcamera.transform.position.z));
-
         Vector3 tapWorldPoint = Camera.main.ScreenToWorldPoint(
           new Vector3(screenPos.x, screenPos.y, -Camera.main.transform.position.z));
 

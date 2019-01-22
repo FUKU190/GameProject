@@ -13,10 +13,11 @@ public class MoveBlock : MonoBehaviour
     public Text missionQuiz3;
     public CanvasGroup QuizCanvas,Panel,missonText;
     public bool Up = true;
-    public int Nolma,PanelNum;
+    public int Nolma,PanelNum,FloorCount;
 
     void Start()
     {
+        FloorCount = 1;
         Nolma = 0;
         upspeed = 0;
         rb = GetComponent<Rigidbody>();
@@ -43,10 +44,9 @@ public class MoveBlock : MonoBehaviour
     {
         if (col.gameObject.tag == "Player" && Nolma == PanelNum)
         {
-            missionQuiz3.text = "  3問連続正解せよ！";
             StartCoroutine("QuizCombo");
         }
-        else if(this.gameObject.transform.position.y > posision && Nolma != PanelNum)
+        else if(this.gameObject.transform.position.y < 140 && this.gameObject.transform.position.y > posision && Nolma != PanelNum)
         {
             missonText.alpha = 1;
             missionQuiz3.text = "有効パネルが不足しています。パネルを点灯させてください";
@@ -59,7 +59,8 @@ public class MoveBlock : MonoBehaviour
 
     IEnumerator QuizCombo()
     {
-        yield return new WaitForSeconds(1.5f);
+        missionQuiz3.text = "  3問連続正解せよ！";
+        yield return new WaitForSeconds(1.3f);
         GameObject.Find("QuizObject").GetComponent<Quiz>().QuizLoad();
         QuizCanvas.alpha = 1;
         Panel.alpha = 1;
@@ -69,6 +70,7 @@ public class MoveBlock : MonoBehaviour
     }
     public void UpFloor()
     {
+        FloorCount++;
         Nolma += 7;
         rb.isKinematic = false;
         upspeed = 4;
